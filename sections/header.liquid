@@ -35,7 +35,8 @@
         {%- endfor %}
       </nav>
         <button id="cart-btn" class="h_cb" type="button">
-        BAG (<span id="cart-count" class="h_cb_count">{{- cart.item_count -}}</span>)
+        BAG 
+        {% comment %} (<span id="cart-count" class="h_cb_count">{{- cart.item_count -}}</span>) {% endcomment %}
       </button>
     </div>
   </header>
