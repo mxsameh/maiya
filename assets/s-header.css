@@ -2,10 +2,10 @@
   height: var(--h-h);
 }
 .h {
-  padding-inline: var(--p-i);
   /* height: var(--h-h); */
+  padding-inline: var(--p-i);
+  padding-top: 
   width: 100%;
-  /* background: white; */
   position: fixed;
   top: 0;
   left: 0;
