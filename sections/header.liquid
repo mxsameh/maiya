@@ -8,7 +8,7 @@
     <!-- Header Left -->
     <div class="h_l">
       {% render 'menu-icon' %}
-
+      {{ 'i-logo.svg' | inline_asset_content }}
     </div>
 
     <!-- Header Middle -->
@@ -35,7 +35,7 @@
           </div>
         {%- endfor %}
       </nav>
-        <button id="cart-btn" class="h_cb" type="button">
+      <button id="cart-btn" class="h_cb" type="button">
         cart
         {% comment %} (<span id="cart-count" class="h_cb_count">{{- cart.item_count -}}</span>) {% endcomment %}
       </button>
