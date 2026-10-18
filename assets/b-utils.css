@@ -1,6 +1,6 @@
 :root {
-  --p-i: 40px;
-  --h-h: 80px;
+  --p-i: 40rem;
+  --h-h: 80rem;
   --c-blue: #002d9f;
   --c-yellow: #c4ff73;
   @media (width < 770px) {
