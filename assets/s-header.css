@@ -39,6 +39,7 @@
   }
 }
 .h_n a {
+  font-family: "s", sans-serif;
   font-size: 60rem;
   text-transform: lowercase;
 }
