@@ -3,7 +3,7 @@
 }
 .h {
   padding-inline: var(--p-i);
-  height: var(--h-h);
+  /* height: var(--h-h); */
   width: 100%;
   background: white;
   position: fixed;
@@ -40,6 +40,7 @@
 }
 .h_n a {
   font-size: 60rem;
+  text-transform: lowercase;
 }
 
 .h_m a figure {
