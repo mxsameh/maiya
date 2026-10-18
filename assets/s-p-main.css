@@ -3,5 +3,10 @@
 }
 .s_playground {
   height: 100vh;
+  position: relative;
 }
+.b{
+  position: absolute;
+  bottom:0;
 
+}
