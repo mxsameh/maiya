@@ -8,18 +8,6 @@
     <!-- Header Left -->
     <div class="h_l">
       {% render 'menu-icon' %}
-      <nav class="h_n">
-        {% for link in linklists['main-menu'].links -%}
-          <div class="h_n-item">
-            {{ link.title | link_to: link.url }}
-
-            <!-- Dropdown Menu -->
-            {% if link.links.size > 0 %}
-              {% render 'dropdown-menu', links: link.links %}
-            {% endif %}
-          </div>
-        {%- endfor %}
-      </nav>
     </div>
 
     <!-- Header Middle -->
