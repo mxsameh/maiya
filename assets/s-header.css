@@ -31,8 +31,11 @@
     display: none;
   }
 }
-.h_r button{
-
+.h_r button {
+  color: inherit;
+  font-family: "s", sans-serif;
+  font-size: 60rem;
+  text-transform: lowercase;
 }
 
 .h_n {
