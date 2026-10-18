@@ -1,10 +1,10 @@
 :root {
-  --p-i: 20px;
+  --p-i: 40px;
   --h-h: 80px;
   --c-blue: #002d9f;
   --c-yellow: #c4ff73;
   @media (width < 770px) {
-    --p-i: 40px;
+    --p-i: 20px;
     --h-h: 60px;
   }
 }
