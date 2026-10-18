@@ -3,7 +3,7 @@
 }
 .h {
   /* height: var(--h-h); */
-  padding-inline: var(--p-i);
+  padding-inline: 40rem;
   padding-top: 24rem;
   width: 100%;
   position: fixed;
