@@ -22,6 +22,10 @@
 .h_m {
   flex-shrink: 0;
 }
+
+.h_logo {
+  width: 180rem;
+}
 .h_r {
   display: flex;
   justify-content: flex-end;
