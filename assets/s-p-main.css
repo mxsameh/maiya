@@ -1,11 +1,11 @@
 .s-playground {
   height: 100vh;
   position: relative;
-}
-.b {
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  padding-inline: var(--p-i);
+  .b {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding-inline: var(--p-i);
+  }
 }
