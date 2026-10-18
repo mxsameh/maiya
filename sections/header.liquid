@@ -34,7 +34,9 @@
           </div>
         {%- endfor %}
       </nav>
-      <button>cart</button>
+        <button id="cart-btn" class="h_cb" type="button">
+        BAG (<span id="cart-count" class="h_cb_count">{{- cart.item_count -}}</span>)
+      </button>
     </div>
   </header>
 
