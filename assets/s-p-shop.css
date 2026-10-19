@@ -1,0 +1,39 @@
+body {
+  background-color: var(--c-yellow);
+}
+.p {
+  padding-top: 80rem;
+  padding-bottom: 160rem;
+  padding-inline: 40rem;
+  color: var(--c-blue);
+}
+
+.s-about {
+  display: flex;
+  justify-content: space-between;
+}
+
+h1 {
+  font-size: 80rem;
+  font-family: "i";
+  font-weight: normal;
+}
+.r {
+  width: 800rem;
+  padding-top: 32rem;
+  display: flex;
+  flex-direction: column;
+  gap: 40rem;
+}
+.r div {
+  font-family: "i";
+  font-size: 40rem;
+  align-self: flex-end;
+  /* justify-self: flex-end; */
+}
+p {
+  font-family: "b";
+  font-size: 16rem;
+  line-height: 1.4;
+  text-align: justify;
+}
