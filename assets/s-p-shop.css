@@ -20,13 +20,13 @@ h1 {
   line-height: 85%;
   text-align: center;
 }
-.s-intro{
-  .img1{
-
+.s-intro {
+  figure {
+    aspect-ratio: 4/5;
   }
-
+  .img1 {
+  }
 }
-
 
 p {
   font-family: "b";
