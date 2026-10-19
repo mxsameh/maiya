@@ -19,8 +19,9 @@ h1 {
 .r {
   width: 800rem;
   padding-top: 32rem;
-  di
-
+  display: flex;
+  flex-direction: column;
+  gap: 40rem;
 }
 p {
   font-family: "b";
