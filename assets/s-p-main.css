@@ -10,10 +10,10 @@
   }
 }
 
-.s-intro{
-
-  .gallery{
-    
+.s-intro {
+  .gallery {
+    margin-inline: auto;
+    width: 1000rem;
     display: flex;
   }
 }
