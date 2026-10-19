@@ -16,6 +16,9 @@ h1 {
   font-family: "i";
   font-weight: normal;
 }
-.r{
-    width: 800rem;
+.r {
+  width: 800rem;
+}
+p {
+  font-size: 16rem;
 }
