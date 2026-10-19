@@ -17,6 +17,8 @@ h1 {
   font-size: 120rem;
   font-family: "s";
   font-weight: normal;
+  line-height: 85%;
+  text-align: center;
 }
 .r {
   width: 800rem;
