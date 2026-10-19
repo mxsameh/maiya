@@ -17,7 +17,7 @@ body {
   display: flex;
   gap: 280rem;
   justify-content: center;
-  posi
+  position: relative;
   h1 {
     font-size: 120rem;
     font-family: "s";
@@ -38,6 +38,21 @@ body {
   .img2 {
     margin-top: 80rem;
     transform: rotate(8deg);
+  }
+}
+.s-collection {
+  h2 {
+    margin-top: 80rem;
+    color: white;
+    text-align: center;
+    line-height: 90%;
+    font-size: 90rem;
+    font-family: "i";
+    font-weight: normal;
+  }
+  span {
+    display: block;
+    font-style: italic;
   }
 }
 
