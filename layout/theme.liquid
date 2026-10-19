@@ -9,9 +9,6 @@
     {% render 'fonts' %}
   </head>
   {%- liquid
-    assign page_theme = 'theme1'
-    assign dark_pages = 'about,contact,partnerships' | split: ','
-
     if dark_pages contains page.handle or template.name == 'index'
       assign page_theme = 'theme2'
     endif
