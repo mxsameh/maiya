@@ -25,6 +25,7 @@ body {
     position: absolute;
   }
   figure {
+    flex-shrink: 0;
     aspect-ratio: 4/5;
     background-color: #b2b2b2;
     width: 400rem;
