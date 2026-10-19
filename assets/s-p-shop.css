@@ -13,14 +13,16 @@ body {
   justify-content: space-between;
 }
 
-h1 {
-  font-size: 120rem;
-  font-family: "s";
-  font-weight: normal;
-  line-height: 85%;
-  text-align: center;
-}
 .s-intro {
+  display: flex;
+  gap: 280rem;
+  h1 {
+    font-size: 120rem;
+    font-family: "s";
+    font-weight: normal;
+    line-height: 85%;
+    text-align: center;
+  }
   figure {
     aspect-ratio: 4/5;
     background-color: #b2b2b2;
