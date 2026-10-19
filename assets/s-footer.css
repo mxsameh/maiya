@@ -1,10 +1,11 @@
 .home .f {
-  color: var(--c-yellow);
+  --f-c: var(--c-yellow);
 }
 .f {
   /* margin-top: 40px; */
+  --f-c: var(--c-blue);
   padding-inline: var(--p-i);
-  color: var(--c-blue);
+  color: var(--f-c);
   @media (width < 770px) {
     max-width: 600px;
   }
