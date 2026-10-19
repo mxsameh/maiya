@@ -16,7 +16,7 @@
       assign page_theme = 'theme2'
     endif
   -%}
-  <body >
+  <body class="{{ page_theme }}">
     {% section 'header' %}
     {% section 'cart-drawer' %}
     {{ content_for_layout }}
