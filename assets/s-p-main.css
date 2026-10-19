@@ -1,5 +1,10 @@
-#f{
-  
+#h {
+  color: var(--c-yellow);
+  background: var(--c-blue);
+}
+#f {
+  color: var(--c-yellow);
+  background: var(--c-blue);
 }
 .p {
   background: var(--c-blue);
