@@ -1,9 +1,8 @@
 {{ 's-p-shop.css' | asset_url | stylesheet_tag }}
 
-{% 
-    assign collection = 
- %}
-
+{% liquid
+  assign collection = collections.shop
+%}
 
 <div class="p">
   <section class="s-intro">
