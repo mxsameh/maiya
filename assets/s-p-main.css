@@ -18,9 +18,11 @@
     display: flex;
   }
   h2 {
-    color: var(--c-yellow);
+    color: white;
     text-align: center;
     line-height: 90%;
     font-size: 90rem;
+    font-family: "i";
+    font-weight: normal;
   }
 }
