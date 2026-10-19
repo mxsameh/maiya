@@ -2,11 +2,13 @@ body {
   background-color: var(--c-yellow);
 }
 .p {
+  padding-top: 80rem;
   padding-bottom: 160rem;
   padding-inline: 40rem;
 }
-.s-about{
-    display: flex;
-    justify-content: space-between;
+.s-about {
+  display: flex;
+  justify-content: space-between;
 }
-h1
+h1 {
+}
