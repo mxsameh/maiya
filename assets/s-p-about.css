@@ -5,6 +5,7 @@ body {
   padding-top: 80rem;
   padding-bottom: 160rem;
   padding-inline: 40rem;
+  color: var(--c-blue);
 }
 .s-about {
   display: flex;
@@ -12,6 +13,7 @@ body {
 }
 h1 {
   font-size: 80rem;
-  font-family: 'i';
+  font-family: "i";
   font-weight: normal;
 }
+.
