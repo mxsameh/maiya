@@ -20,5 +20,7 @@ h1 {
   width: 800rem;
 }
 p {
+    font-family: 'b';
   font-size: 16rem;
+  line-height: 1.4;
 }
