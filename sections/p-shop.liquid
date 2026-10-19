@@ -1,5 +1,8 @@
 {{ 's-p-shop.css' | asset_url | stylesheet_tag }}
 
+{{  }}
+
+
 <div class="p">
   <section class="s-intro">
     <h1>maiya <br /> the foundation</h1>
@@ -8,7 +11,9 @@
   </section>
   <section class="s-collection">
     <h2>not strictly activewear <br /> not quite everyday wear <span> something in between </span></h2>
-
+    {% for product in collection.products %}
+      {% render 'collection-product', product: product %}
+    {% endfor %}
   </section>
 </div>
 
