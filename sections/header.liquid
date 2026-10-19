@@ -14,19 +14,21 @@
     </div>
 
     <!-- Header Middle -->
-    <div class="h_m">
-      <a href="/">
-        {% if settings.logo %}
-          <figure>
-            {{ settings.logo | image_url: width: 200 | image_tag }}
-          </figure>
-        {% else %}
-          <span>
-            {{ shop.name }}
-          </span>
-        {% endif %}
-      </a>
-    </div>
+    {% comment %}
+      <div class="h_m">
+        <a href="/">
+          {% if settings.logo %}
+            <figure>
+              {{ settings.logo | image_url: width: 200 | image_tag }}
+            </figure>
+          {% else %}
+            <span>
+              {{ shop.name }}
+            </span>
+          {% endif %}
+        </a>
+      </div>
+    {% endcomment %}
 
     <!-- Header Right -->
     <div class="h_r">
