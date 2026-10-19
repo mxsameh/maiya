@@ -24,6 +24,8 @@ h1 {
   gap: 40rem;
 }
 .r div {
+  font-family: "i";
+  font-size: 40rem;
   align-self: flex-end;
   /* justify-self: flex-end; */
 }
