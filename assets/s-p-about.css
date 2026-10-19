@@ -7,10 +7,12 @@ body {
   padding-inline: 40rem;
   color: var(--c-blue);
 }
+
 .s-about {
   display: flex;
   justify-content: space-between;
 }
+
 h1 {
   font-size: 80rem;
   font-family: "i";
