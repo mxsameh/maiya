@@ -3,9 +3,10 @@ body {
 }
 .p {
   padding-bottom: 160rem;
+  padding-inline: 40rem;
 }
 .s-about{
     display: flex;
-    justify-content: spac;
+    justify-content: space-between;
 }
 h1
