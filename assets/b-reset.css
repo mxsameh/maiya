@@ -17,7 +17,6 @@ body {
   font-family: "h", serif;
   overscroll-behavior: none;
   font-size: 14rem;
-  background: var(--c-blue);
 }
 li {
   list-style: none;
