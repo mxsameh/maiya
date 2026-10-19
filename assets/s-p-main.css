@@ -26,4 +26,8 @@
     font-family: "i";
     font-weight: normal;
   }
+  span {
+    display: block;
+    font-style: italic;
+  }
 }
