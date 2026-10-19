@@ -8,7 +8,15 @@
     {{ 'b-utils.css' | asset_url | stylesheet_tag }}
     {% render 'fonts' %}
   </head>
-  <body>
+  {%- liquid
+    assign page_theme = 'theme1'
+    assign dark_pages = 'about,contact,partnerships' | split: ','
+
+    if dark_pages contains page.handle or template.name == 'index'
+      assign page_theme = 'theme2'
+    endif
+  -%}
+  <body >
     {% section 'header' %}
     {% section 'cart-drawer' %}
     {{ content_for_layout }}
