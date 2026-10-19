@@ -23,6 +23,9 @@ h1 {
   flex-direction: column;
   gap: 40rem;
 }
+.r div {
+  align-items: flex-end;
+}
 p {
   font-family: "b";
   font-size: 16rem;
