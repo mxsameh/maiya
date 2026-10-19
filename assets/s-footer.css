@@ -6,11 +6,7 @@
   }
 }
 
-.f .t{
+.f .t {
   display: flex;
-
-
+  justify-content: space-between;
 }
-
-
-
