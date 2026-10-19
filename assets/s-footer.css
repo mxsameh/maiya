@@ -11,6 +11,10 @@
   display: flex;
   justify-content: space-between;
 }
+.f .t div {
+  display: flex;
+  gap: 40rem;
+}
 .f .t a {
   font-family: "b";
   font-size: 16rem;
