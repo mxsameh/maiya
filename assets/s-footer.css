@@ -11,10 +11,9 @@
   display: flex;
   justify-content: space-between;
 }
-.f .t a{
-  font-family: 'b';
-  
-
+.f .t a {
+  font-family: "b";
+  font-size: 16rem;
 }
 
 .f .b {
