@@ -4,7 +4,7 @@
 .f {
   /* margin-top: 40px; */
   padding-inline: var(--p-i);
-  color: var(--c-yellow);
+  color: var(--c-blue);
   @media (width < 770px) {
     max-width: 600px;
   }
