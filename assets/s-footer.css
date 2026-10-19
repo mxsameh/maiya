@@ -27,3 +27,6 @@
 .f .b {
   margin-top: 40rem;
 }
+.f .b svg {
+  fill: var(--f-c);
+}
