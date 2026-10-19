@@ -12,4 +12,8 @@
 
 .s-intro{
 
+  .gallery{
+    
+    display: flex;
+  }
 }
