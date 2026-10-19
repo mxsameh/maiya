@@ -24,6 +24,7 @@
 }
 
 .h_logo {
+  display: block;
   width: 180rem;
 }
 .h_r {
