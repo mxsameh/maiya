@@ -6,6 +6,7 @@
   --f-c: var(--c-yellow);
 }
 .h {
+  --f-c: var(--c-yellow);
   /* height: var(--h-h); */
   padding-inline: 40rem;
   padding-top: 24rem;
@@ -30,6 +31,10 @@
 .h_logo {
   display: block;
   width: 180rem;
+}
+.h_logo svg{
+  fill:var(--f-c)
+
 }
 .h_r {
   display: flex;
