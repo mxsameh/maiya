@@ -4,3 +4,8 @@ body {
 .p {
   padding-bottom: 160rem;
 }
+.s-about{
+    display: flex;
+    justify-content: spac;
+}
+h1
