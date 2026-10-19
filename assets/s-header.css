@@ -16,6 +16,7 @@
   display: flex;
   align-items: center;
   gap: 24px;
+  color: var(--c-blue)
 }
 .h_l,
 .h_r,
