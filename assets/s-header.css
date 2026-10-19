@@ -13,6 +13,7 @@
   display: flex;
   align-items: center;
   gap: 24px;
+  color: var(--c-yellow);
 }
 .h_l,
 .h_r,
@@ -30,7 +31,6 @@
   display: flex;
   justify-content: flex-end;
   gap: 40rem;
-  color: var(--c-yellow);
   @media (width < 770px) {
     display: none;
   }
