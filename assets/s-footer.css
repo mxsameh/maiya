@@ -11,6 +11,11 @@
   display: flex;
   justify-content: space-between;
 }
+.f .t a{
+  font-family: 'b';
+  
+
+}
 
 .f .b {
   margin-top: 40rem;
