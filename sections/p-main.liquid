@@ -9,19 +9,15 @@
   <section
     class="s-intro"
   >
-    <div class='gallery'>
+    <div class="gallery">
       <figure>
-        {{ product | image_url: width: 200 | image_tag }}
-
+        {{ section.settings.img1 | image_url | image_tag }}
       </figure>
-
     </div>
   </section>
 </div>
 
-
-
-  {% schema %}
+{% schema %}
 {
   "name": "main",
   "settings": [
@@ -42,4 +38,4 @@
     }
   ]
 }
-  {% endschema %}
+{% endschema %}
