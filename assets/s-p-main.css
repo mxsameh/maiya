@@ -1,5 +1,7 @@
-.p {
+body {
   background: var(--c-blue);
+}
+.p {
   padding-bottom: 160rem;
 }
 .s-playground {
