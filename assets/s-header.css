@@ -6,7 +6,7 @@
   --f-c: var(--c-yellow);
 }
 .h {
-  --f-c: var(--c-yellow);
+  --f-c: var(--c-blue);
   /* height: var(--h-h); */
   padding-inline: 40rem;
   padding-top: 24rem;
@@ -18,7 +18,7 @@
   display: flex;
   align-items: center;
   gap: 24px;
-  color: var(--c-blue);
+  color: var(--f-c);
 }
 .h_l,
 .h_r,
@@ -32,9 +32,8 @@
   display: block;
   width: 180rem;
 }
-.h_logo svg{
-  fill:var(--f-c)
-
+.h_logo svg {
+  fill: var(--f-c);
 }
 .h_r {
   display: flex;
