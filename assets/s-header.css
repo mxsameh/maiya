@@ -1,6 +1,9 @@
 .h-ph {
   height: var(--h-h);
 }
+.home .h{
+  color: var(--c-yellow);
+}
 .h {
   /* height: var(--h-h); */
   padding-inline: 40rem;
@@ -13,7 +16,6 @@
   display: flex;
   align-items: center;
   gap: 24px;
-  color: var(--c-yellow);
 }
 .h_l,
 .h_r,
