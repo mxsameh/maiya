@@ -25,6 +25,7 @@ h1 {
 }
 .r div {
   align-items: flex-end;
+  justify-self: flex-end;
 }
 p {
   font-family: "b";
