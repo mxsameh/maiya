@@ -3,7 +3,7 @@
   background: var(--c-blue);
 }
 .f {
-  margin-top: 40px;
+  /* margin-top: 40px; */
   padding-inline: var(--p-i);
   color: var(--c-yellow);
   @media (width < 770px) {
