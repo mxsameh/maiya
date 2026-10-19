@@ -22,7 +22,6 @@
 .h_m {
   flex-shrink: 0;
 }
-
 .h_logo {
   display: block;
   width: 180rem;
@@ -36,14 +35,12 @@
     display: none;
   }
 }
-
 .h_cb {
   color: inherit;
   font-family: "s", sans-serif;
   font-size: 60rem;
   text-transform: lowercase;
 }
-
 .h_n {
   display: flex;
   gap: 40rem;
