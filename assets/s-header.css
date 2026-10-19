@@ -6,7 +6,7 @@
 }
 .h {
   --f-c: var(--c-blue);
-  /* height: var(--h-h); */
+  height: var(--h-h);
   padding-inline: 40rem;
   padding-top: 24rem;
   width: 100%;
