@@ -5,6 +5,7 @@
   /* margin-top: 40px; */
   --f-c: var(--c-blue);
   padding-inline: var(--p-i);
+  padding-bottom: 24rem;
   color: var(--f-c);
   @media (width < 770px) {
     max-width: 600px;
