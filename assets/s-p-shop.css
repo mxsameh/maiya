@@ -33,6 +33,7 @@ body {
     width: 400rem;
   }
   .img2 {
+    margin-top: 80rem;
     transform: rotate(8deg);
   }
 }
