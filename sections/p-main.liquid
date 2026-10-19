@@ -11,7 +11,7 @@
   >
     <div class="gallery">
       <figure>
-        {{ section.settings.img1 | image_url | image_tag }}
+        {{ section.settings.img1 | image_url: width: 400 | image_tag }}
       </figure>
       <figure>
         {{ section.settings.img2 | image_url | image_tag }}
