@@ -16,6 +16,7 @@ body {
 .s-intro {
   display: flex;
   gap: 280rem;
+  justify-content: center;
   h1 {
     font-size: 120rem;
     font-family: "s";
