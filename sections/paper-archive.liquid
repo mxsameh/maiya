@@ -7,33 +7,13 @@
 <section
   class="pa"
   data-paper-archive
-  data-stage-w="{{ section.settings.stage_width }}"
-  data-stage-h="{{ section.settings.stage_height }}"
-  style="
-    --pa-bg: {{ section.settings.background }};
-    --pa-title-color: {{ section.settings.title_color }};
-    --pa-title-size: {{ section.settings.title_size }}px;
-    --pa-title-lh: {{ section.settings.title_line_height }}px;
-    --pa-title-x: {{ section.settings.title_x }}px;
-    --pa-title-y: {{ section.settings.title_y }}px;
-    --pa-title-w: {{ section.settings.title_width }}px;
-    --pa-title-z: {{ section.settings.title_z }};
-    --pa-aspect: {{ section.settings.stage_width }} / {{ section.settings.stage_height }};
-    --pa-pad-top: {{ section.settings.padding_top }}px;
-    --pa-pad-bottom: {{ section.settings.padding_bottom }}px;
-    --pa-title-font: {{ section.settings.title_font.family }}, {{ section.settings.title_font.fallback_families }};
-    --pa-title-weight: {{ section.settings.title_font.weight }};
-  "
 >
-  {{ section.settings.title_font | font_face: font_display: 'swap' }}
-
   <div class="pa__frame" data-pa-frame>
-    <div class="pa__stage" data-pa-stage style="width: {{ section.settings.stage_width }}px; height: {{ section.settings.stage_height }}px;">
-
-      {%- if section.settings.title != blank -%}
-        <h2 class="pa__title">{{ section.settings.title | escape | newline_to_br }}</h2>
-      {%- endif -%}
-
+    <div
+      class="pa__stage"
+      data-pa-stage
+      style="width: {{ section.settings.stage_width }}px; height: {{ section.settings.stage_height }}px;"
+    >
       {%- for block in section.blocks -%}
         {%- assign s = block.settings -%}
         {%- if s.image != blank -%}
@@ -46,9 +26,8 @@
               left: {{ s.x }}px;
               top: {{ s.y }}px;
               width: {{ s.width }}px;
-              height: {{ s.height }}px;
+              {% comment %} height: {{ s.height }}px; {% endcomment %}
               z-index: {{ s.z_index }};
-              --pa-rot: {{ s.rotation }}deg;
             "
             {{ block.shopify_attributes }}
           >
@@ -67,22 +46,19 @@
           </div>
         {%- endif -%}
       {%- endfor -%}
-
     </div>
   </div>
 </section>
 
 {% stylesheet %}
   .pa {
-    background: var(--pa-bg);
-    padding-top: var(--pa-pad-top);
-    padding-bottom: var(--pa-pad-bottom);
+    width: 1440rem;
+    height: 900rem;
     overflow: hidden;
   }
   .pa__frame {
     position: relative;
     width: 100%;
-    aspect-ratio: var(--pa-aspect);
   }
   .pa__stage {
     position: absolute;
@@ -91,21 +67,7 @@
     transform-origin: 0 0;
     transform: scale(var(--pa-scale, 1));
   }
-  .pa__title {
-    position: absolute;
-    left: var(--pa-title-x);
-    top: var(--pa-title-y);
-    width: var(--pa-title-w);
-    z-index: var(--pa-title-z);
-    margin: 0;
-    text-align: center;
-    color: var(--pa-title-color);
-    font-family: var(--pa-title-font);
-    font-weight: var(--pa-title-weight);
-    font-size: var(--pa-title-size);
-    line-height: var(--pa-title-lh);
-    pointer-events: none;
-  }
+
   .pa__item {
     position: absolute;
     transform: rotate(var(--pa-rot, 0deg));
@@ -134,7 +96,9 @@
     filter: drop-shadow(0 14px 18px rgb(0 0 0 / 0.45));
   }
   @media (prefers-reduced-motion: reduce) {
-    .pa__item { transition: none; }
+    .pa__item {
+      transition: none;
+    }
   }
 {% endstylesheet %}
 
@@ -162,7 +126,11 @@
       root._paObserver = ro;
 
       root.querySelectorAll('[data-pa-item].is-draggable').forEach(function (el) {
-        var startX, startY, originX, originY, active = false;
+        var startX,
+          startY,
+          originX,
+          originY,
+          active = false;
 
         el.addEventListener('pointerdown', function (e) {
           if (e.pointerType === 'mouse' && e.button !== 0) return;
@@ -203,8 +171,8 @@
 
     // Theme editor: re-init when the section is added or re-rendered
     document.addEventListener('shopify:section:load', function (e) {
-      var root = e.target.querySelector('[data-paper-archive]') ||
-                 (e.target.matches('[data-paper-archive]') ? e.target : null);
+      var root =
+        e.target.querySelector('[data-paper-archive]') || (e.target.matches('[data-paper-archive]') ? e.target : null);
       if (root) {
         root.dataset.paReady = 'false';
         initCollage(root);
@@ -225,22 +193,14 @@
   "class": "section-paper-archive",
   "settings": [
     { "type": "header", "content": "Canvas" },
-    { "type": "color", "id": "background", "label": "Background", "default": "#111111" },
-    { "type": "number", "id": "stage_width", "label": "Design width (px)", "default": 1024, "info": "Positions below are in this coordinate space. The whole canvas scales to fit the screen." },
-    { "type": "number", "id": "stage_height", "label": "Design height (px)", "default": 601 },
-    { "type": "number", "id": "padding_top", "label": "Padding top (px)", "default": 0 },
-    { "type": "number", "id": "padding_bottom", "label": "Padding bottom (px)", "default": 0 },
-
-    { "type": "header", "content": "Title" },
-    { "type": "textarea", "id": "title", "label": "Title", "default": "Paper\nArchive" },
-    { "type": "font_picker", "id": "title_font", "label": "Font", "default": "assistant_n4" },
-    { "type": "color", "id": "title_color", "label": "Color", "default": "#ffffff" },
-    { "type": "number", "id": "title_size", "label": "Font size (px)", "default": 73 },
-    { "type": "number", "id": "title_line_height", "label": "Line height (px)", "default": 56 },
-    { "type": "number", "id": "title_x", "label": "X", "default": 394 },
-    { "type": "number", "id": "title_y", "label": "Y", "default": 224 },
-    { "type": "number", "id": "title_width", "label": "Width", "default": 215 },
-    { "type": "number", "id": "title_z", "label": "Layer (z-index)", "default": 302 }
+    {
+      "type": "number",
+      "id": "stage_width",
+      "label": "Design width (px)",
+      "default": 1024,
+      "info": "Positions below are in this coordinate space. The whole canvas scales to fit the screen."
+    },
+    { "type": "number", "id": "stage_height", "label": "Design height (px)", "default": 601 }
   ],
   "blocks": [
     {
@@ -251,9 +211,13 @@
         { "type": "number", "id": "x", "label": "X", "default": 100 },
         { "type": "number", "id": "y", "label": "Y", "default": 100 },
         { "type": "number", "id": "width", "label": "Width", "default": 200 },
-        { "type": "number", "id": "height", "label": "Height", "default": 200 },
-        { "type": "number", "id": "rotation", "label": "Rotation (deg)", "default": 0 },
-        { "type": "number", "id": "z_index", "label": "Layer (z-index)", "default": 310, "info": "Higher sits on top." },
+        {
+          "type": "number",
+          "id": "z_index",
+          "label": "Layer (z-index)",
+          "default": 310,
+          "info": "Higher sits on top."
+        },
         { "type": "checkbox", "id": "draggable", "label": "Draggable", "default": true }
       ]
     }
@@ -261,11 +225,7 @@
   "presets": [
     {
       "name": "Paper Archive",
-      "blocks": [
-        { "type": "item" },
-        { "type": "item" },
-        { "type": "item" }
-      ]
+      "blocks": [{ "type": "item" }, { "type": "item" }, { "type": "item" }]
     }
   ]
 }
