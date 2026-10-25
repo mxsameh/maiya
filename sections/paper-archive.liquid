@@ -210,6 +210,7 @@
         initCollage(root);
       }
     });
+
     document.addEventListener('shopify:section:unload', function (e) {
       var root = e.target.querySelector('[data-paper-archive]');
       if (root && root._paObserver) root._paObserver.disconnect();
