@@ -16,9 +16,76 @@
         "img2": "shopify://shop_images/Frame_20.png",
         "img3": "shopify://shop_images/Frame_18.png"
       }
+    },
+    "paper_archive_nBKGKT": {
+      "type": "paper-archive",
+      "blocks": {
+        "item_be7KFz": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/016A66121.png",
+            "x": 100,
+            "y": 100,
+            "width": 200,
+            "height": 200,
+            "rotation": 0,
+            "z_index": 310,
+            "draggable": true
+          }
+        },
+        "item_M7cX6m": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Frame_18.png",
+            "x": 100,
+            "y": 100,
+            "width": 200,
+            "height": 200,
+            "rotation": 0,
+            "z_index": 310,
+            "draggable": true
+          }
+        },
+        "item_AUrKWU": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Frame_20.png",
+            "x": 135,
+            "y": 499,
+            "width": 200,
+            "height": 200,
+            "rotation": 0,
+            "z_index": 310,
+            "draggable": true
+          }
+        }
+      },
+      "block_order": [
+        "item_be7KFz",
+        "item_M7cX6m",
+        "item_AUrKWU"
+      ],
+      "name": "Paper Archive",
+      "settings": {
+        "background": "#111111",
+        "stage_width": 1024,
+        "stage_height": 601,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "title": "Paper\nArchive",
+        "title_font": "assistant_n4",
+        "title_color": "#ffffff",
+        "title_size": 73,
+        "title_line_height": 56,
+        "title_x": 394,
+        "title_y": 224,
+        "title_width": 215,
+        "title_z": 302
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "paper_archive_nBKGKT"
   ]
 }
