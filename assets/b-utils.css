@@ -1,9 +1,12 @@
 :root {
-  --h-h: 60px;
-  --p-i: 40px;
+  --p-i: 24rem;
+  --h-h: 78rem;
+  --c-blue: #002d9f;
+  --c-baby-blue: #8ab2ff;
+  --c-yellow: #c4ff73;
   @media (width < 770px) {
-    --h-h: 80px;
     --p-i: 20px;
+    --h-h: 60px;
   }
 }
 .h-s {

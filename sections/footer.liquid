@@ -1,7 +1,8 @@
 {{ 's-footer.css' | asset_url | stylesheet_tag }}
 
 {% liquid
-  assign ig_link = 'https://www.instagram.com/nctrnstudio'
+  assign ig_link = 'https://www.instagram.com/maiyathestudio/'
+  assign tiktok_link = 'https://www.instagram.com/maiyathestudio/'
 %}
 
 {% comment %}
@@ -12,23 +13,21 @@
   </div>
 {% endcomment %}
 
-<footer class="f">
-  <div class="f_t">
-    <ul>
-      <li>
-        {{ 'About the Brand' | link_to: '/about' }}
-      </li>
-      <li>{{ 'Contact Us' | link_to: '/contact' }}</li>
-      <li>{{ 'Instagram' | link_to: ig_link }}</li>
-    </ul>
-
-    <div class="nl">
-      {% render 'newsletter' %}
-    </div>
+<footer id='f' class="f">
+  <div class='t'>
+  <div>
+    <a href="/shop" target="_blank">shop</a>
+    <a href="/about" target="_blank">about</a>
+    <a href="/contact" target="_blank">contact</a>
+  </div>
+  <div>
+    <a href="{{ ig_link }}" target="_blank">instagram </a>
+    <a href="{{ tiktok_link }}" target="_blank"> tiktok </a>
+  </div>
   </div>
 
-  <div class="f_b">
-    <p>nctrn © 20{{ 'now' | date: '%y' }}</p>
+  <div class="b">
+    {{ 'i-mts.svg' | inline_asset_content }}
   </div>
 </footer>
 

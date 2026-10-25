@@ -1,7 +1,9 @@
 <a href="{{ product.url }}" class="pc">
+
   <figure>
     {{ product.featured_image | image_url: width: 800 | image_tag }}
   </figure>
+
   <div>
     <h3>{{ product.title }}</h3>
     <p>

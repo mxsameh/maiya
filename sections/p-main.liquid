@@ -1,16 +1,26 @@
 {{ 's-p-main.css' | asset_url | stylesheet_tag }}
 
 <div class="p">
-  <section class="s-video">
-    <a href="{{ section.settings.collection_url }}">
+  <section class="s-playground">
+    <div class="b">
+      {{ 'i-mts.svg' | inline_asset_content }}
+    </div>
+  </section>
+  <section
+    class="s-intro"
+  >
+    <div class="gallery">
       <figure>
-        {{ section.settings.d_video | video_tag: autoplay: true, muted: true, loop: true, class: 'd-video' }}
-        {{ section.settings.m_video | video_tag: autoplay: true, muted: true, loop: true, class: 'm-video' }}
+        {{ section.settings.img1 | image_url: width: 800 | image_tag }}
       </figure>
-    </a>
-    <h3>
-      {{ section.settings.title | link_to: section.settings.collection_url }}
-    </h3>
+      <figure>
+        {{ section.settings.img2 | image_url: width: 800 | image_tag }}
+      </figure>
+      <figure>
+        {{ section.settings.img3 | image_url: width: 800 | image_tag }}
+      </figure>
+    </div>
+    <h2>not strictly activewear <br /> not quite everyday wear <span> something in between </span></h2>
   </section>
 </div>
 
@@ -19,24 +29,19 @@
   "name": "main",
   "settings": [
     {
-      "id": "d_video",
-      "label": "Desktop Video",
-      "type": "video"
+      "id": "img1",
+      "label": "Image 1",
+      "type": "image_picker"
     },
     {
-      "id": "m_video",
-      "label": "Mobile Video",
-      "type": "video"
+      "id": "img2",
+      "label": "Image 2",
+      "type": "image_picker"
     },
     {
-      "id": "collection_url",
-      "label": "Collection URL",
-      "type": "url"
-    },
-    {
-      "id": "title",
-      "label": "Title",
-      "type": "text"
+      "id": "img3",
+      "label": "Image 3",
+      "type": "image_picker"
     }
   ]
 }
