@@ -9,14 +9,6 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "p-main",
-      "settings": {
-        "img1": "shopify://shop_images/Frame_18.png",
-        "img2": "shopify://shop_images/Frame_20.png",
-        "img3": "shopify://shop_images/Frame_18.png"
-      }
-    },
     "paper_archive_nBKGKT": {
       "type": "paper-archive",
       "blocks": {
@@ -136,10 +128,18 @@
         "stage_width": 1024,
         "stage_height": 601
       }
+    },
+    "main": {
+      "type": "p-main",
+      "settings": {
+        "img1": "shopify://shop_images/Frame_18.png",
+        "img2": "shopify://shop_images/Frame_20.png",
+        "img3": "shopify://shop_images/Frame_18.png"
+      }
     }
   },
   "order": [
-    "main",
-    "paper_archive_nBKGKT"
+    "paper_archive_nBKGKT",
+    "main"
   ]
 }
