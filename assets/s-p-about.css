@@ -2,7 +2,7 @@ body {
   background-color: var(--c-yellow);
 }
 .p {
-  padding-top: 80rem;
+  padding-top: 120rem;
   padding-bottom: 160rem;
   padding-inline: 40rem;
   color: var(--c-blue);
@@ -18,12 +18,15 @@ h1 {
   font-family: "i";
   font-weight: normal;
 }
+.l {
+  padding-top: 110rem;
+}
 .r {
   width: 800rem;
   padding-top: 32rem;
   display: flex;
   flex-direction: column;
-  gap: 40rem;
+  /* gap: 40rem; */
 }
 .r div {
   font-family: "i";
@@ -31,7 +34,15 @@ h1 {
   align-self: flex-end;
   /* justify-self: flex-end; */
 }
+h3 {
+  margin-top: 48rem;
+  font-family: "i";
+  font-size: 40rem;
+  text-transform: lowercase;
+  font-weight: normal;
+}
 p {
+  margin-top: 24rem;
   font-family: "b";
   font-size: 16rem;
   line-height: 1.4;

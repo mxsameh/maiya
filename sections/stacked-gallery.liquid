@@ -1,0 +1,298 @@
+{%- comment -%}
+  Stacked Gallery: front image + tilted image peeking behind it. Click to swap.
+  Place in /sections/stacked-gallery.liquid and add it in the theme editor.
+  Each image is a block. Only two are ever visible; extra images wait behind the peeking one.
+{%- endcomment -%}
+
+{%- assign total = section.blocks.size -%}
+
+<section
+  class="pg"
+  data-stacked-gallery
+  style="
+    --pg-bg: {{ section.settings.background }};
+    --pg-border: {{ section.settings.border_color }};
+    --pg-border-w: {{ section.settings.border_width }}px;
+    --pg-max: {{ section.settings.max_width }}px;
+    --pg-frame: {{ section.settings.frame_ratio }};
+    --pg-card-w: {{ section.settings.card_width }}%;
+    --pg-card-ratio: {{ section.settings.card_ratio }};
+    --pg-pad-x: {{ section.settings.padding_x }}%;
+    --pg-pad-y: {{ section.settings.padding_y }}%;
+    --pg-off-x: {{ section.settings.offset_x }}%;
+    --pg-off-y: {{ section.settings.offset_y }}%;
+    --pg-tilt: {{ section.settings.tilt }}deg;
+    --pg-sec-top: {{ section.settings.section_padding_top }}px;
+    --pg-sec-bottom: {{ section.settings.section_padding_bottom }}px;
+  "
+>
+  <div
+    class="pg__frame"
+    data-pg-frame
+    {% if total > 1 %}
+      role="button"
+      tabindex="0"
+      aria-label="{{ section.settings.aria_label | escape }}"
+    {% endif %}
+  >
+    {%- for block in section.blocks -%}
+      {%- assign s = block.settings -%}
+      {%- if s.image != blank -%}
+        {%- liquid
+          assign pos = forloop.index0
+          if pos > 2
+            assign pos = 2
+          endif
+          assign alt_text = s.alt | default: s.image.alt
+          if forloop.index0 < 2
+            assign loading = 'eager'
+          else
+            assign loading = 'lazy'
+          endif
+          if forloop.index0 == 0
+            assign fetchpriority = 'high'
+          else
+            assign fetchpriority = 'auto'
+          endif
+        -%}
+        <div
+          class="pg__card"
+          data-pg-slide
+          data-pos="{{ pos }}"
+          {% if forloop.index0 != 0 %}aria-hidden="true"{% endif %}
+          {{ block.shopify_attributes }}
+        >
+          {{
+            s.image
+            | image_url: width: 1400
+            | image_tag:
+              widths: '400, 600, 800, 1100, 1400',
+              sizes: '(min-width: 990px) 40vw, 90vw',
+              loading: loading,
+              fetchpriority: fetchpriority,
+              alt: alt_text,
+              draggable: 'false'
+          }}
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .pg {
+    background: var(--pg-bg);
+    padding: var(--pg-sec-top) 1.5rem var(--pg-sec-bottom);
+    overflow: hidden;
+  }
+  .pg__frame {
+    position: relative;
+    width: 100%;
+    max-width: var(--pg-max);
+    margin: 0 auto;
+    aspect-ratio: var(--pg-frame);
+    -webkit-tap-highlight-color: transparent;
+    outline-offset: 6px;
+  }
+  .pg__frame[role='button'] {
+    cursor: pointer;
+  }
+
+  .pg__card {
+    position: absolute;
+    left: var(--pg-pad-x);
+    top: var(--pg-pad-y);
+    width: var(--pg-card-w);
+    aspect-ratio: var(--pg-card-ratio);
+    transform-origin: 50% 50%;
+    transition:
+      transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.5s ease;
+    will-change: transform;
+  }
+  .pg__card img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  /* The coloured frame sits on top, so the photo is never resized by it */
+  .pg__card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: var(--pg-border-w) solid var(--pg-border);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+
+  /* 0 = front */
+  .pg__card[data-pos='0'] {
+    z-index: 3;
+    transform: translate(0, 0) rotate(0deg);
+  }
+  .pg__card[data-pos='0']::after {
+    opacity: 1;
+  }
+
+  /* 1 = tilted, peeking out behind */
+  .pg__card[data-pos='1'] {
+    z-index: 2;
+    transform: translate(var(--pg-off-x), var(--pg-off-y)) rotate(var(--pg-tilt));
+  }
+
+  /* 2 = waiting in the wings (only matters with 3+ images) */
+  .pg__card[data-pos='2'] {
+    z-index: 1;
+    opacity: 0;
+    transform: translate(var(--pg-off-x), var(--pg-off-y)) rotate(var(--pg-tilt));
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pg__card,
+    .pg__card::after {
+      transition: none;
+    }
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  (function () {
+    function init(root) {
+      if (!root || root.dataset.pgReady === 'true') return;
+      root.dataset.pgReady = 'true';
+
+      var frame = root.querySelector('[data-pg-frame]');
+      var slides = Array.prototype.slice.call(root.querySelectorAll('[data-pg-slide]'));
+      var n = slides.length;
+      var current = 0;
+
+      function render() {
+        slides.forEach(function (el, i) {
+          var pos = Math.min((i - current + n) % n, 2);
+          el.dataset.pos = pos;
+          if (pos === 0) el.removeAttribute('aria-hidden');
+          else el.setAttribute('aria-hidden', 'true');
+        });
+      }
+
+      function next() {
+        current = (current + 1) % n;
+        render();
+      }
+
+      render();
+      if (n < 2) return;
+
+      frame.addEventListener('click', next);
+      frame.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          next();
+        }
+      });
+
+      // Theme editor: selecting a block brings that image to the front
+      root.addEventListener('shopify:block:select', function (e) {
+        var i = slides.indexOf(e.target);
+        if (i > -1) {
+          current = i;
+          render();
+        }
+      });
+    }
+
+    function initAll() {
+      document.querySelectorAll('[data-stacked-gallery]').forEach(init);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAll);
+    } else {
+      initAll();
+    }
+
+    document.addEventListener('shopify:section:load', function (e) {
+      var root = e.target.querySelector('[data-stacked-gallery]');
+      if (root) {
+        root.dataset.pgReady = 'false';
+        init(root);
+      }
+    });
+  })();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Stacked Gallery",
+  "tag": "div",
+  "class": "section-stacked-gallery",
+  "max_blocks": 10,
+  "settings": [
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "background", "label": "Background", "default": "#93b0fa" },
+    { "type": "color", "id": "border_color", "label": "Front image border", "default": "#1530ad" },
+    { "type": "range", "id": "border_width", "label": "Border width (px)", "min": 0, "max": 20, "step": 1, "default": 10 },
+
+    { "type": "header", "content": "Layout" },
+    { "type": "range", "id": "max_width", "label": "Max width (px)", "min": 300, "max": 1000, "step": 10, "default": 560 },
+    {
+      "type": "select",
+      "id": "frame_ratio",
+      "label": "Overall shape",
+      "default": "1 / 1",
+      "options": [
+        { "value": "1 / 1", "label": "Square" },
+        { "value": "5 / 6", "label": "Slightly tall" },
+        { "value": "4 / 5", "label": "Tall" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "card_ratio",
+      "label": "Image shape",
+      "default": "4 / 5",
+      "options": [
+        { "value": "4 / 5", "label": "Portrait 4:5" },
+        { "value": "3 / 4", "label": "Portrait 3:4" },
+        { "value": "2 / 3", "label": "Portrait 2:3" },
+        { "value": "1 / 1", "label": "Square" }
+      ]
+    },
+    { "type": "range", "id": "card_width", "label": "Image width (%)", "min": 50, "max": 80, "step": 1, "default": 68 },
+    { "type": "range", "id": "padding_x", "label": "Front image inset X (%)", "min": 0, "max": 20, "step": 1, "default": 5 },
+    { "type": "range", "id": "padding_y", "label": "Front image inset Y (%)", "min": 0, "max": 20, "step": 1, "default": 4 },
+
+    { "type": "header", "content": "Peeking image" },
+    { "type": "range", "id": "tilt", "label": "Tilt (deg)", "min": -15, "max": 15, "step": 1, "default": 7 },
+    { "type": "range", "id": "offset_x", "label": "Shift right (%)", "min": 0, "max": 50, "step": 1, "default": 28, "info": "Relative to the image's own width." },
+    { "type": "range", "id": "offset_y", "label": "Shift down (%)", "min": 0, "max": 30, "step": 1, "default": 11 },
+
+    { "type": "header", "content": "Section" },
+    { "type": "range", "id": "section_padding_top", "label": "Padding top (px)", "min": 0, "max": 120, "step": 4, "default": 40 },
+    { "type": "range", "id": "section_padding_bottom", "label": "Padding bottom (px)", "min": 0, "max": 120, "step": 4, "default": 40 },
+    { "type": "text", "id": "aria_label", "label": "Accessibility label", "default": "Show next image" }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "alt", "label": "Alt text", "info": "Falls back to the image's own alt text." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Stacked Gallery",
+      "blocks": [{ "type": "image" }, { "type": "image" }]
+    }
+  ]
+}
+{% endschema %}

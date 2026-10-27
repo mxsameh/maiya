@@ -1,9 +1,9 @@
 {{ 's-p-shop.css' | asset_url | stylesheet_tag }}
+{{ 's-product-card.css' | asset_url | stylesheet_tag }}
 
 {% liquid
   assign collection = collections.shop
 %}
-
 
 <div class="p">
   <section class="s-intro">
@@ -13,9 +13,13 @@
   </section>
   <section class="s-collection">
     <h2>not strictly activewear <br /> not quite everyday wear <span> something in between </span></h2>
-    {% for product in collection.products %}
-      {% render 'collection-product', product: product %}
-    {% endfor %}
+    <ul class="products">
+      {% for product in collection.products %}
+        <li>
+          {% render 'product-card', product: product %}
+        </li>
+      {% endfor %}
+    </ul>
   </section>
 </div>
 

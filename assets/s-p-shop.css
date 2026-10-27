@@ -2,8 +2,7 @@ body {
   background-color: var(--c-baby-blue);
 }
 .p {
-  padding-top: 80rem;
-  padding-bottom: 160rem;
+  padding-block: 160rem 80rem;
   padding-inline: 40rem;
   color: var(--c-blue);
 }
@@ -53,6 +52,12 @@ body {
     display: block;
     font-style: italic;
   }
+}
+.products {
+  margin-top: 120rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24rem;
 }
 
 p {
