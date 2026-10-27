@@ -1,12 +1,60 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-    "sections":{
-        "product": {
-            "type": "p-product",
-            "settings": {
-            }
-        }
+  "sections": {
+    "product": {
+      "type": "p-product",
+      "settings": {}
     },
-    "order": [
-        "product"
-    ]
+    "stacked_gallery_dByrDD": {
+      "type": "stacked-gallery",
+      "blocks": {
+        "image_neLwBj": {
+          "type": "image",
+          "settings": {
+            "alt": ""
+          }
+        },
+        "image_eQ4epU": {
+          "type": "image",
+          "settings": {
+            "alt": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_neLwBj",
+        "image_eQ4epU"
+      ],
+      "name": "Stacked Gallery",
+      "settings": {
+        "background": "#93b0fa",
+        "border_color": "#1530ad",
+        "border_width": 10,
+        "max_width": 560,
+        "frame_ratio": "1 / 1",
+        "card_ratio": "4 / 5",
+        "card_width": 68,
+        "padding_x": 5,
+        "padding_y": 4,
+        "tilt": 7,
+        "offset_x": 28,
+        "offset_y": 11,
+        "section_padding_top": 40,
+        "section_padding_bottom": 40,
+        "aria_label": "Show next image"
+      }
+    }
+  },
+  "order": [
+    "product",
+    "stacked_gallery_dByrDD"
+  ]
 }
