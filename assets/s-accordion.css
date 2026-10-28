@@ -1,5 +1,6 @@
 .accordion {
-  padding-block: 10px;
+  padding-block: 16rem;
+  border-bottom: 1rem solid var(--c-blue);
 }
 .accordion_h {
   display: flex;
@@ -8,8 +9,9 @@
   cursor: pointer;
 }
 .accordion_h h2 {
-  font-size: 12px;
-  font-weight: 400;
+  font-size: 16rem;
+  font-family: "s";
+  font-weight: normal;
 }
 .accordion_h svg {
   width: 10px;
@@ -26,7 +28,8 @@
 
 .accordion_b {
   padding-top: 16px;
-  font-size: 14px;
-  line-height: 1.5;
-  color: #555;
+  font-size: 14rem;
+  line-height: 1.8;
+  text-transform: lowercase;
+  font-family: "b";
 }

@@ -11,69 +11,60 @@
 
 <div class="p">
   <div class="product">
-    {% render 'product-gallery' %}
-
-    {% comment %}
-      PRODUCT INFO
-    {% endcomment %}
-    <div class="product_info_">
-      <div class="product_info">
-        <h1 class="product_title">{{ product.title }}</h1>
-        <div class="product_price">
-          <div class="current-price">
-            <span>{{ current_variant.price | money_without_currency | remove: '.00' }}</span>
-            {{ shop.currency }}
-          </div>
-
-          <div
-            class="compare-price {%unless compare_at_price %}d-n{% endunless %}"
-          >
-            <span>
-              {{ current_variant.compare_at_price | money_without_currency | remove: '.00' }}
-            </span>
-            {{ shop.currency }}
-          </div>
-        </div>
-
-        {% render 'product-form' %}
-
-        <div class="product_data">
-          {% if product.description %}
-            <div class="product_desc">
-              <h2>PPODUCT DESCRIPTION</h2>
-              <p>
-                {{ product.description | strip_html }}
-              </p>
-            </div>
-          {% endif %}
-
-          {% comment %}
-            {% render 'accordion',
-              heading: 'MATERIALS',
-              content: product.metafields.custom.material,
-              default: '100% Cotton'
-            %}
-          {% endcomment %}
-          {% liquid
-            assign y = false
-            if product.metafields.custom.fit or product.metafields.custom.material
-              assign y = true
-            endif
-          %}
-
-          {% if y %}
-            {% assign x = 'Materials: '
-              | append: product.metafields.custom.material
-              | append: '<br>'
-              | append: 'Fit: '
-              | append: product.metafields.custom.fit
-            %}
-
-            {% render 'accordion', heading: 'MORE INFORMATION', content: x, default: 'Contact for more info.' %}
-          {% endif %}
-        </div>
+    <div class="l">
+      <h1 class="p_title">{{ product.title }}</h1>
+      <p class="p_desc">{{ product.description }}</p>
+      {% render 'product-form' %}
+      <div class="p_details">
+        {% render 'accordion', heading: 'details', content: product.metafields.custom.details, default: '100% Cotton' %}
+        {% render 'accordion',
+          heading: 'size & fit',
+          content: product.metafields.custom.size_and_fit,
+          default: '100% Cotton'
+        %}
       </div>
     </div>
+
+    <div class="r">
+      {% render 'st-gallery' %}
+    </div>
+
+    {% comment %}
+      {% render 'product-gallery' %}
+        PRODUCT INFO
+          <div class="product_price">
+            <div class="current-price">
+              <span>{{ current_variant.price | money_without_currency | remove: '.00' }}</span>
+              {{ shop.currency }}
+            </div>
+
+            <div
+              class="compare-price {%unless compare_at_price %}d-n{% endunless %}"
+            >
+              <span>
+                {{ current_variant.compare_at_price | money_without_currency | remove: '.00' }}
+              </span>
+              {{ shop.currency }}
+            </div>
+          </div>
+
+            {% liquid
+              assign y = false
+              if product.metafields.custom.fit or product.metafields.custom.material
+                assign y = true
+              endif
+            %}
+
+            {% if y %}
+              {% assign x = 'Materials: '
+                | append: product.metafields.custom.material
+                | append: '<br>'
+                | append: 'Fit: '
+                | append: product.metafields.custom.fit
+              %}
+
+            {% endif %}
+    {% endcomment %}
   </div>
 
   {% render 'recommended-products' %}

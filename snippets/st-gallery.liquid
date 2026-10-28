@@ -1,0 +1,206 @@
+{%- assign p = product -%}
+{%- assign total = 0 -%}
+{%- for media in p.media -%}
+  {%- assign total = total | plus: 1 -%}
+{%- endfor -%}
+
+<section
+  class="pg"
+  data-stacked-gallery
+>
+  <div
+    class="pg__frame"
+    data-pg-frame
+    {% if total > 1 %}
+      role="button"
+      tabindex="0"
+    {% endif %}
+  >
+    {%- assign idx = 0 -%}
+    {%- for media in p.media -%}
+      {%- if media.media_type == 'image' -%}
+        {%- liquid
+          assign pos = idx
+          if pos > 2
+            assign pos = 2
+          endif
+          assign alt_text = media.alt | default: p.title
+          if idx < 2
+            assign loading = 'eager'
+          else
+            assign loading = 'lazy'
+          endif
+          if idx == 0
+            assign fetchpriority = 'high'
+          else
+            assign fetchpriority = 'auto'
+          endif
+        -%}
+        <div
+          class="pg__card"
+          data-pg-slide
+          data-pos="{{ pos }}"
+          {% if idx != 0 %}
+            aria-hidden="true"
+          {% endif %}
+        >
+          {{
+            media.preview_image
+            | image_url: width: 1400
+            | image_tag:
+              widths: '400, 600, 800, 1100, 1400',
+              sizes: '(min-width: 990px) 40vw, 90vw',
+              loading: loading,
+              fetchpriority: fetchpriority,
+              alt: alt_text,
+              draggable: 'false'
+          }}
+        </div>
+        {%- assign idx = idx | plus: 1 -%}
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .pg {
+    padding: 40rem 1.5rem;
+    overflow: hidden;
+  }
+  .pg__frame {
+    position: relative;
+    width: 100%;
+    max-width: 560rem;
+    margin: 0 auto;
+    aspect-ratio: 1;
+    -webkit-tap-highlight-color: transparent;
+    outline-offset: 6px;
+  }
+  .pg__frame[role='button'] {
+    cursor: pointer;
+  }
+
+  .pg__empty {
+    margin: 0;
+    padding: 2rem;
+    text-align: center;
+    color: var(--c-blue);
+  }
+
+  .pg__card {
+    position: absolute;
+    left: 5%;
+    top: 4%;
+    width: 68%;
+    aspect-ratio: 4/5;
+    transform-origin: 50% 50%;
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease;
+    will-change: transform;
+  }
+  .pg__card img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  /* The coloured frame sits on top, so the photo is never resized by it */
+  .pg__card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 6rem solid var(--c-blue);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+
+  /* 0 = front */
+  .pg__card[data-pos='0'] {
+    z-index: 3;
+    transform: translate(0, 0) rotate(0deg);
+  }
+  .pg__card[data-pos='0']::after {
+    opacity: 1;
+  }
+
+  /* 1 = tilted, peeking out behind */
+  .pg__card[data-pos='1'] {
+    z-index: 2;
+    transform: translate(28%, 11%) rotate(7deg);
+  }
+
+  /* 2 = waiting in the wings (only matters with 3+ images) */
+  .pg__card[data-pos='2'] {
+    z-index: 1;
+    opacity: 0;
+    transform: translate (28%, 11%) rotate(7deg);
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pg__card,
+    .pg__card::after {
+      transition: none;
+    }
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  (function () {
+    function init(root) {
+      if (!root || root.dataset.pgReady === 'true') return;
+      root.dataset.pgReady = 'true';
+
+      var frame = root.querySelector('[data-pg-frame]');
+      var slides = Array.prototype.slice.call(root.querySelectorAll('[data-pg-slide]'));
+      var n = slides.length;
+      var current = 0;
+
+      function render() {
+        slides.forEach(function (el, i) {
+          var pos = Math.min((i - current + n) % n, 2);
+          el.dataset.pos = pos;
+          if (pos === 0) el.removeAttribute('aria-hidden');
+          else el.setAttribute('aria-hidden', 'true');
+        });
+      }
+
+      function next() {
+        current = (current + 1) % n;
+        render();
+      }
+
+      render();
+      if (n < 2) return;
+
+      frame.addEventListener('click', next);
+      frame.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          next();
+        }
+      });
+    }
+
+    function initAll() {
+      document.querySelectorAll('[data-stacked-gallery]').forEach(init);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAll);
+    } else {
+      initAll();
+    }
+
+    document.addEventListener('shopify:section:load', function (e) {
+      var root = e.target.querySelector('[data-stacked-gallery]');
+      if (root) {
+        root.dataset.pgReady = 'false';
+        init(root);
+      }
+    });
+  })();
+{% endjavascript %}

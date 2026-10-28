@@ -7,7 +7,7 @@
   </div>
   <div class="accordion_b_">
     <div class="accordion_b">
-      {{- content | default: default  -}}
+      {{ content | newline_to_br | default: default }}
     </div>
   </div>
 </div>

@@ -1,10 +1,23 @@
 {%- comment -%}
   Stacked Gallery: front image + tilted image peeking behind it. Click to swap.
   Place in /sections/stacked-gallery.liquid and add it in the theme editor.
-  Each image is a block. Only two are ever visible; extra images wait behind the peeking one.
+  Images come from the product's media. Only two are ever visible; extra images wait behind the peeking one.
 {%- endcomment -%}
 
-{%- assign total = section.blocks.size -%}
+{%- comment -%}
+  Uses the current product's images on product pages.
+  Anywhere else (home page, landing pages) it uses the product picked in the section settings.
+{%- endcomment -%}
+{%- assign p = section.settings.product | default: product -%}
+{%- assign max_images = section.settings.max_images -%}
+{%- assign total = 0 -%}
+{%- if p != blank -%}
+  {%- for media in p.media -%}
+    {%- if media.media_type == 'image' and total < max_images -%}
+      {%- assign total = total | plus: 1 -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
 
 <section
   class="pg"
@@ -35,47 +48,55 @@
       aria-label="{{ section.settings.aria_label | escape }}"
     {% endif %}
   >
-    {%- for block in section.blocks -%}
-      {%- assign s = block.settings -%}
-      {%- if s.image != blank -%}
-        {%- liquid
-          assign pos = forloop.index0
-          if pos > 2
-            assign pos = 2
-          endif
-          assign alt_text = s.alt | default: s.image.alt
-          if forloop.index0 < 2
-            assign loading = 'eager'
-          else
-            assign loading = 'lazy'
-          endif
-          if forloop.index0 == 0
-            assign fetchpriority = 'high'
-          else
-            assign fetchpriority = 'auto'
-          endif
-        -%}
-        <div
-          class="pg__card"
-          data-pg-slide
-          data-pos="{{ pos }}"
-          {% if forloop.index0 != 0 %}aria-hidden="true"{% endif %}
-          {{ block.shopify_attributes }}
-        >
-          {{
-            s.image
-            | image_url: width: 1400
-            | image_tag:
-              widths: '400, 600, 800, 1100, 1400',
-              sizes: '(min-width: 990px) 40vw, 90vw',
-              loading: loading,
-              fetchpriority: fetchpriority,
-              alt: alt_text,
-              draggable: 'false'
-          }}
-        </div>
+    {%- if total == 0 -%}
+      {%- if request.design_mode -%}
+        <p class="pg__empty">Pick a product in the section settings (or place this section on a product page).</p>
       {%- endif -%}
-    {%- endfor -%}
+    {%- else -%}
+      {%- assign idx = 0 -%}
+      {%- for media in p.media -%}
+        {%- if media.media_type == 'image' and idx < max_images -%}
+          {%- liquid
+            assign pos = idx
+            if pos > 2
+              assign pos = 2
+            endif
+            assign alt_text = media.alt | default: p.title
+            if idx < 2
+              assign loading = 'eager'
+            else
+              assign loading = 'lazy'
+            endif
+            if idx == 0
+              assign fetchpriority = 'high'
+            else
+              assign fetchpriority = 'auto'
+            endif
+          -%}
+          <div
+            class="pg__card"
+            data-pg-slide
+            data-pos="{{ pos }}"
+            {% if idx != 0 %}
+              aria-hidden="true"
+            {% endif %}
+          >
+            {{
+              media.preview_image
+              | image_url: width: 1400
+              | image_tag:
+                widths: '400, 600, 800, 1100, 1400',
+                sizes: '(min-width: 990px) 40vw, 90vw',
+                loading: loading,
+                fetchpriority: fetchpriority,
+                alt: alt_text,
+                draggable: 'false'
+            }}
+          </div>
+          {%- assign idx = idx | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
   </div>
 </section>
 
@@ -98,6 +119,13 @@
     cursor: pointer;
   }
 
+  .pg__empty {
+    margin: 0;
+    padding: 2rem;
+    text-align: center;
+    color: var(--pg-border);
+  }
+
   .pg__card {
     position: absolute;
     left: var(--pg-pad-x);
@@ -105,9 +133,7 @@
     width: var(--pg-card-w);
     aspect-ratio: var(--pg-card-ratio);
     transform-origin: 50% 50%;
-    transition:
-      transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-      opacity 0.5s ease;
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease;
     will-change: transform;
   }
   .pg__card img {
@@ -196,15 +222,6 @@
           next();
         }
       });
-
-      // Theme editor: selecting a block brings that image to the front
-      root.addEventListener('shopify:block:select', function (e) {
-        var i = slides.indexOf(e.target);
-        if (i > -1) {
-          current = i;
-          render();
-        }
-      });
     }
 
     function initAll() {
@@ -232,15 +249,47 @@
   "name": "Stacked Gallery",
   "tag": "div",
   "class": "section-stacked-gallery",
-  "max_blocks": 10,
   "settings": [
+    { "type": "header", "content": "Product" },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product",
+      "info": "Leave empty on product pages: it uses the product being viewed. Required elsewhere, like the home page."
+    },
+    {
+      "type": "range",
+      "id": "max_images",
+      "label": "Max images to cycle through",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "default": 6
+    },
+
     { "type": "header", "content": "Colors" },
     { "type": "color", "id": "background", "label": "Background", "default": "#93b0fa" },
     { "type": "color", "id": "border_color", "label": "Front image border", "default": "#1530ad" },
-    { "type": "range", "id": "border_width", "label": "Border width (px)", "min": 0, "max": 20, "step": 1, "default": 10 },
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "Border width (px)",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "default": 10
+    },
 
     { "type": "header", "content": "Layout" },
-    { "type": "range", "id": "max_width", "label": "Max width (px)", "min": 300, "max": 1000, "step": 10, "default": 560 },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Max width (px)",
+      "min": 300,
+      "max": 1000,
+      "step": 10,
+      "default": 560
+    },
     {
       "type": "select",
       "id": "frame_ratio",
@@ -265,34 +314,60 @@
       ]
     },
     { "type": "range", "id": "card_width", "label": "Image width (%)", "min": 50, "max": 80, "step": 1, "default": 68 },
-    { "type": "range", "id": "padding_x", "label": "Front image inset X (%)", "min": 0, "max": 20, "step": 1, "default": 5 },
-    { "type": "range", "id": "padding_y", "label": "Front image inset Y (%)", "min": 0, "max": 20, "step": 1, "default": 4 },
+    {
+      "type": "range",
+      "id": "padding_x",
+      "label": "Front image inset X (%)",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "padding_y",
+      "label": "Front image inset Y (%)",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "default": 4
+    },
 
     { "type": "header", "content": "Peeking image" },
     { "type": "range", "id": "tilt", "label": "Tilt (deg)", "min": -15, "max": 15, "step": 1, "default": 7 },
-    { "type": "range", "id": "offset_x", "label": "Shift right (%)", "min": 0, "max": 50, "step": 1, "default": 28, "info": "Relative to the image's own width." },
+    {
+      "type": "range",
+      "id": "offset_x",
+      "label": "Shift right (%)",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 28,
+      "info": "Relative to the image's own width."
+    },
     { "type": "range", "id": "offset_y", "label": "Shift down (%)", "min": 0, "max": 30, "step": 1, "default": 11 },
 
     { "type": "header", "content": "Section" },
-    { "type": "range", "id": "section_padding_top", "label": "Padding top (px)", "min": 0, "max": 120, "step": 4, "default": 40 },
-    { "type": "range", "id": "section_padding_bottom", "label": "Padding bottom (px)", "min": 0, "max": 120, "step": 4, "default": 40 },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "Padding top (px)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "Padding bottom (px)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 40
+    },
     { "type": "text", "id": "aria_label", "label": "Accessibility label", "default": "Show next image" }
   ],
-  "blocks": [
-    {
-      "type": "image",
-      "name": "Image",
-      "settings": [
-        { "type": "image_picker", "id": "image", "label": "Image" },
-        { "type": "text", "id": "alt", "label": "Alt text", "info": "Falls back to the image's own alt text." }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Stacked Gallery",
-      "blocks": [{ "type": "image" }, { "type": "image" }]
-    }
-  ]
+  "presets": [{ "name": "Stacked Gallery" }]
 }
 {% endschema %}

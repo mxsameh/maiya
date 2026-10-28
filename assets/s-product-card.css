@@ -20,3 +20,8 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.pc p {
+  font-family: "i";
+  font-size: 16rem;
+  /* text-transform: lowercase; */
+}

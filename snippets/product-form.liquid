@@ -19,12 +19,16 @@
   {% comment %}
     Add to Cart
   {% endcomment %}
-  <div class="product_atc">
+  <div class="p_atc">
     {% if available %}
       <button
         type="submit"
       >
-        Add to Bag
+        add to cart
+        <div class="p_price">
+          <span>{{ current_variant.price | money_without_currency | remove: '.00' }}</span>
+          {{ shop.currency }}
+        </div>
       </button>
     {% else %}
       <button
