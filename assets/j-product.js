@@ -22,7 +22,7 @@ const areArraysEqual = (arr1, arr2) => {
 
 const getVariantByOptions = (options) => {
   const variant = product_variants.find((variant) =>
-    areArraysEqual(variant.options, options)
+    areArraysEqual(variant.options, options),
   );
   return variant;
 };
@@ -53,16 +53,16 @@ const formatPrice = (number) => {
 };
 
 const updateProductInfo = (variant) => {
-  const {  available, price, compare_at_price } = variant;
+  const { available, price, compare_at_price } = variant;
 
   // QUERY SELECTORS
   const $product_compare_price = document.querySelector(
-    ".product_price .compare-price span"
+    ".p_price .compare-price span",
   );
-  const $product_current_price = document.querySelector(
-    ".product_price .current-price span"
-  );
-  const $product_atc = document.querySelector(".product_atc button");
+  const $product_price = document.querySelector(".p_price ");
+  const $product_current_price = document.querySelector(".p_price  span");
+  const $product_atc = document.querySelector(".p_atc button");
+  const $atc = document.querySelector(".p_atc button .atc");
   // const $product_image = document.querySelector(".product_image img");
 
   // UPDATE COMPARE PRICE
@@ -70,7 +70,7 @@ const updateProductInfo = (variant) => {
     $product_compare_price.classList.remove("d-n");
     $product_compare_price.textContent = formatPrice(compare_at_price);
   } else {
-    $product_compare_price.classList.add("d-n");
+    $product_compare_price?.classList.add("d-n");
   }
 
   // UPDATE CURRENT PRICE
@@ -81,12 +81,14 @@ const updateProductInfo = (variant) => {
     if (!$product_atc.disabled) return;
     $product_atc.removeAttribute("disabled");
     $product_atc.classList.remove("disabled");
-    $product_atc.textContent = "Add to Bag";
+    $atc.textContent = "add to cart";
+    $product_price.classList.remove("d-n");
   } else {
     if ($product_atc.disabled) return;
     $product_atc.setAttribute("disabled", true);
     $product_atc.classList.add("disabled");
-    $product_atc.textContent = "Sold Out";
+    $atc.textContent = "Sold Out";
+    $product_price.classList.add("d-n");
   }
   console.log("updated");
 };

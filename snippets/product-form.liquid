@@ -20,24 +20,44 @@
     Add to Cart
   {% endcomment %}
   <div class="p_atc">
-    {% if available %}
-      <button
-        type="submit"
-      >
-        add to cart
-        <div class="p_price">
-          <span>{{ current_variant.price | money_without_currency | remove: '.00' }}</span>
-          {{ shop.currency }}
-        </div>
-      </button>
-    {% else %}
-      <button
-        type="submit"
+    <button
+      type="submit"
+      {% unless available %}
         disabled
-        class="disabled"
-      >
-        Sold Out
-      </button>
-    {% endif %}
+      {% endunless %}
+    >
+      <div class="atc">
+        {%- if available -%}
+          add to cart
+        {%- else -%}
+          sold out
+        {%- endif -%}
+      </div>
+      <div class="p_price{% unless available %} d-n{% endunless %}">
+        <span>{{ current_variant.price | money_without_currency | remove: '.00' }}</span>
+        {{ shop.currency }}
+      </div>
+    </button>
+    {% comment %}
+      {% if available %}
+        <button
+          type="submit"
+        >
+          <div class="atc">add to cart</div>
+          <div class="p_price">
+            <span>{{ current_variant.price | money_without_currency | remove: '.00' }}</span>
+            {{ shop.currency }}
+          </div>
+        </button>
+      {% else %}
+        <button
+          type="submit"
+          disabled
+          class="disabled"
+        >
+          Sold Out
+        </button>
+      {% endif %}
+    {% endcomment %}
   </div>
 {% endform %}

@@ -89,12 +89,14 @@
   font-family: "s";
   text-transform: lowercase;
 }
+.p_atc button:disabled {
+  justify-content: center;
+  background-color: #bfe58c;
+  cursor: unset;
+}
 .product_price {
   font-size: 16px;
   /* display: flex;
   gap: 8px;
   margin-top: 16px; */
-}
-.product_atc button:disabled {
-  background-color: #999;
 }

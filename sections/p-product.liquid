@@ -28,43 +28,6 @@
     <div class="r">
       {% render 'st-gallery' %}
     </div>
-
-    {% comment %}
-      {% render 'product-gallery' %}
-        PRODUCT INFO
-          <div class="product_price">
-            <div class="current-price">
-              <span>{{ current_variant.price | money_without_currency | remove: '.00' }}</span>
-              {{ shop.currency }}
-            </div>
-
-            <div
-              class="compare-price {%unless compare_at_price %}d-n{% endunless %}"
-            >
-              <span>
-                {{ current_variant.compare_at_price | money_without_currency | remove: '.00' }}
-              </span>
-              {{ shop.currency }}
-            </div>
-          </div>
-
-            {% liquid
-              assign y = false
-              if product.metafields.custom.fit or product.metafields.custom.material
-                assign y = true
-              endif
-            %}
-
-            {% if y %}
-              {% assign x = 'Materials: '
-                | append: product.metafields.custom.material
-                | append: '<br>'
-                | append: 'Fit: '
-                | append: product.metafields.custom.fit
-              %}
-
-            {% endif %}
-    {% endcomment %}
   </div>
 
   {% render 'recommended-products' %}

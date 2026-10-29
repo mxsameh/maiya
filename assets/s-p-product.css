@@ -4,6 +4,7 @@ body {
 .p {
   /* padding: 20px; */
   padding-top: 200rem;
+  padding-bottom: 120rem;
   color: var(--c-blue);
 }
 .product {
