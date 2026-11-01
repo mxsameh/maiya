@@ -10,13 +10,33 @@
   "page": [],
   "product": [
     {
-      "key": "preorder",
+      "key": "details",
       "namespace": "custom",
-      "name": "preorder",
+      "name": "details",
       "description": "",
       "type": {
-        "name": "single_line_text_field",
+        "name": "multi_line_text_field",
         "category": "TEXT"
+      }
+    },
+    {
+      "key": "size_and_fit",
+      "namespace": "custom",
+      "name": "size and fit",
+      "description": "",
+      "type": {
+        "name": "multi_line_text_field",
+        "category": "TEXT"
+      }
+    },
+    {
+      "key": "size",
+      "namespace": "shopify",
+      "name": "Size",
+      "description": "Used to specify the size of a product, such as 0-3 months or Extra large (XL)",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
       }
     }
   ],
