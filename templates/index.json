@@ -132,9 +132,9 @@
     "main": {
       "type": "p-main",
       "settings": {
-        "img1": "shopify://shop_images/Frame_18.png",
-        "img2": "shopify://shop_images/Frame_20.png",
-        "img3": "shopify://shop_images/Frame_18.png"
+        "img1": "shopify://shop_images/Frame_44.webp",
+        "img2": "shopify://shop_images/Frame_36.webp",
+        "img3": "shopify://shop_images/Frame_35.webp"
       }
     }
   },
