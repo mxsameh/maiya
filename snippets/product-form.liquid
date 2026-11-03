@@ -10,11 +10,13 @@
   {% comment %}
     Options
   {% endcomment %}
-  {% unless product.has_only_default_variant %}
-    {% for option in product.options_with_values %}
-      {% render 'product-option', option: option %}
-    {% endfor %}
-  {% endunless %}
+  <div class="p_options">
+    {% unless product.has_only_default_variant %}
+      {% for option in product.options_with_values %}
+        {% render 'product-option', option: option %}
+      {% endfor %}
+    {% endunless %}
+  </div>
 
   {% comment %}
     Add to Cart
@@ -38,26 +40,5 @@
         {{ shop.currency }}
       </div>
     </button>
-    {% comment %}
-      {% if available %}
-        <button
-          type="submit"
-        >
-          <div class="atc">add to cart</div>
-          <div class="p_price">
-            <span>{{ current_variant.price | money_without_currency | remove: '.00' }}</span>
-            {{ shop.currency }}
-          </div>
-        </button>
-      {% else %}
-        <button
-          type="submit"
-          disabled
-          class="disabled"
-        >
-          Sold Out
-        </button>
-      {% endif %}
-    {% endcomment %}
   </div>
 {% endform %}

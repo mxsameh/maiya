@@ -6,11 +6,14 @@ body {
   padding-top: 200rem;
   padding-bottom: 120rem;
   color: var(--c-blue);
+  @media (width < 1000px) {
+    padding-top: 120rem;
+  }
 }
 .product {
   padding-inline: var(--p-i);
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   @media (width > 1000px) {
     flex-direction: row;
     align-items: flex-start;
@@ -25,6 +28,9 @@ body {
   font-family: "i";
   text-transform: lowercase;
   font-weight: normal;
+  @media (width < 1000px) {
+    font-size: 32rem;
+  }
 }
 .p_desc {
   margin-top: 48rem;
@@ -33,6 +39,10 @@ body {
   text-transform: lowercase;
   text-align: justify;
   line-height: 1.4;
+  @media (width < 1000px) {
+    margin-top: 40rem;
+    font-size: 14rem;
+  }
 }
 .p_details {
   margin-top: 40rem;

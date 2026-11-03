@@ -15,10 +15,17 @@
 .f .t {
   display: flex;
   justify-content: space-between;
+  @media (width < 770px) {
+    flex-direction: column;
+    gap: 24rem;
+  }
 }
 .f .t div {
   display: flex;
   gap: 40rem;
+  @media (width < 770px) {
+    justify-content: center;
+  }
 }
 .f .t a {
   font-family: "b";
@@ -27,6 +34,9 @@
 
 .f .b {
   margin-top: 40rem;
+  @media (width < 770px) {
+    margin-top: 32rem;
+  }
 }
 .f .b svg {
   fill: var(--f-c);

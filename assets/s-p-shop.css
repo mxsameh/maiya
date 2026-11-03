@@ -3,13 +3,8 @@ body {
 }
 .p {
   padding-block: 160rem 80rem;
-  padding-inline: 40rem;
+  padding-inline: var(--p-i);
   color: var(--c-blue);
-}
-
-.s-about {
-  display: flex;
-  justify-content: space-between;
 }
 
 .s-intro {
@@ -17,6 +12,11 @@ body {
   gap: 280rem;
   justify-content: center;
   position: relative;
+  align-items: flex-start;
+  @media (width < 770px) {
+    gap: 50rem;
+  }
+
   h1 {
     font-size: 120rem;
     font-family: "s";
@@ -27,16 +27,27 @@ body {
     top: 50%;
     transform: translateY(-50%);
     z-index: 1;
+    @media (width < 770px) {
+      font-size: 50rem;
+      width: 100%;
+    }
   }
   figure {
     flex-shrink: 0;
     aspect-ratio: 4/5;
     background-color: #b2b2b2;
     width: 400rem;
+    @media (width < 770px) {
+      width: 150rem;
+    }
   }
   .img2 {
     margin-top: 80rem;
     transform: rotate(8deg);
+    @media (width < 770px) {
+      margin-top: 60rem;
+      transform: rotate(15deg);
+    }
   }
 }
 .s-collection {
@@ -47,6 +58,10 @@ body {
     font-size: 90rem;
     font-family: "i";
     font-weight: normal;
+    @media (width < 770px) {
+      margin-top: 80rem;
+      font-size: 40rem;
+    }
   }
   span {
     display: block;
@@ -58,6 +73,10 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24rem;
+  @media (width < 770px) {
+    grid-template-columns: 100%;
+    gap: 40rem;
+  }
 }
 
 p {

@@ -13,7 +13,7 @@
   <div class="product">
     <div class="l">
       <h1 class="p_title">{{ product.title }}</h1>
-      <p class="p_desc">{{ product.description }}</p>
+      <p class="p_desc">{{ product.description | strip_html }}</p>
       {% render 'product-form' %}
       <div class="p_details">
         {% render 'accordion', heading: 'details', content: product.metafields.custom.details, default: '100% Cotton' %}

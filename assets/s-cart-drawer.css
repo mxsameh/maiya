@@ -25,7 +25,7 @@
 
 .cd {
   height: 100%;
-  background: white;
+  background: var(--c-yellow);
   display: flex;
   flex-direction: column;
   overflow: auto;
@@ -36,6 +36,8 @@
   transform: translateX(40px);
   width: 480px;
   margin-left: auto;
+  color: var(--c-blue);
+  font-family: "b";
   @media (width < 770px) {
     width: 100%;
     margin-left: unset;
@@ -59,9 +61,9 @@ CART HEADER
 }
 
 .cd_h h2 {
-  color: #212529;
-  font-weight: 500;
-  font-size: 16px;
+  font-size: 30rem;
+  font-family: "s";
+  font-weight: normal;
 }
 
 .cd_h_r {
@@ -79,6 +81,9 @@ CART HEADER
   width: 20px;
 }
 
+/**********
+BODY
+***********/
 .cd_form {
   flex: 1;
   display: flex;
@@ -105,9 +110,7 @@ CART HEADER
 .cd_item-image {
   width: 120px;
   aspect-ratio: 4/5;
-}
-.cd_item-image img {
-  object-fit: cover;
+  border: 3rem solid var(--c-blue);
 }
 
 .cd_item-info {
@@ -123,19 +126,21 @@ CART HEADER
 }
 
 .cd_item-title {
-  font-size: 16px;
-  font-weight: 500;
-  color: #212529;
+  font-size: 24rem;
+  font-family: "i";
+  font-weight: normal;
 }
 
 .cd_item-options {
   color: #a1a1a1;
-  font-size: 14px;
+  font-size: 16rem;
+  text-transform: lowercase;
 }
 
 .cd_item-quantity {
   display: flex;
   align-items: center;
+  display: none;
 }
 .cd_item-quantity button {
   width: 28px;
@@ -162,15 +167,14 @@ CART HEADER
 }
 
 .info_b a {
-  padding-bottom: 2px;
-  border-bottom: 1px solid #212529;
-  font-size: 12px;
+  padding-bottom: 1rem;
+  font-size: 16rem;
+  border-bottom: 1px solid var(--c-blue);
 }
 
 .info_b p {
-  font-weight: 500;
-  color: #212529;
-  font-size: 14px;
+  text-transform: lowercase;
+  font-size: 16rem;
 }
 
 /************
@@ -191,16 +195,14 @@ CART FOOTER
   display: flex;
   align-items: center;
   justify-content: space-between;
+  text-transform: lowercase;
   h3 {
-    font-weight: 400;
-    color: #525252;
-    font-size: 14px;
+    font-weight: normal;
+    font-size: 16rem;
   }
 
   span {
-    font-weight: 500;
-    color: #212529;
-    font-size: 14px;
+    font-size: 16rem;
   }
 }
 
@@ -209,23 +211,20 @@ CART FOOTER
 }
 
 .cd_f-b {
-  padding: 16px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  padding: 24rem 20rem;
 }
 .cd_f-b p {
-  font-size: 12px;
+  font-size: 16rem;
 }
 .cd_f button {
-  width: 120px;
-  padding: 8px 16px;
-  font-weight: 500;
-  font-size: 12px;
-  border-radius: 50px;
-  background-color: black;
-  color: white;
+  margin-top: 24rem;
+  width: 100%;
+  padding: 10rem 16px;
+  font-size: 16rem;
+  font-family: "s";
+  border-radius: 8rem;
+  background-color: var(--c-blue);
+  color: var(--c-yellow);
 }
 
 .cd_empty {

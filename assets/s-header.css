@@ -7,22 +7,27 @@
 .h {
   --f-c: var(--c-blue);
   height: var(--h-h);
-  padding-inline: 40rem;
+  padding-inline: var(--p-i);
   padding-top: 24rem;
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 999;
+  z-index: 9999;
   display: flex;
   align-items: center;
   gap: 24px;
   color: var(--f-c);
+  @media (width < 770px) {
+    justify-content: space-between;
+  }
 }
 .h_l,
-.h_r,
-.h_r-m {
+.h_r {
   flex-basis: 100%;
+  @media (width < 770px) {
+    flex-basis: unset;
+  }
 }
 .h_m {
   flex-shrink: 0;
@@ -30,6 +35,9 @@
 .h_logo {
   display: block;
   width: 180rem;
+  @media (width < 770px) {
+    width: 80rem;
+  }
 }
 .h_logo svg {
   fill: var(--f-c);
@@ -61,37 +69,15 @@
   text-transform: lowercase;
 }
 
-.h_m a figure {
-  width: 80px;
-}
-.h_m a span {
-  font-size: 14px;
-  font-weight: 500;
-  color: #333;
-}
-
 .h_r div {
   font-size: 12px;
 }
-
-.h_cb_count {
-  color: #333;
-}
-
-.h_r-m {
-  display: none;
-  @media (width < 770px) {
-    display: flex;
-    gap: 20px;
-    justify-content: flex-end;
-  }
-}
-.h_r-m > div {
-  /* padding: 4px 8px; */
-  position: relative;
-}
-.h_r-m svg {
-  width: 20px;
+#menu-btn {
+  display: flex;
+  flex-shrink: 0;
+  font-size: 20rem;
+  font-family: "s", sans-serif;
+  color: inherit;
 }
 
 .h_r-m_cc {
@@ -152,64 +138,17 @@ DROPDOWN MENU
 }
 
 /*****************
-MENU ICON
-/****************/
-#menu-icon {
-  display: none;
-  @media (width < 770px) {
-    height: 24px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 6px;
-  }
-}
-
-#menu-icon span {
-  width: 24px;
-  height: 2px;
-  background-color: black;
-  transform-origin: center;
-}
-#menu-icon.open span:first-of-type {
-  animation: top 0.4s linear both;
-}
-#menu-icon.open span:last-of-type {
-  animation: bottom 0.4s linear both;
-}
-
-@keyframes top {
-  0% {
-    transform: translateY(0) rotate(0);
-  }
-  50% {
-    transform: translateY(4px) rotate(0);
-  }
-  100% {
-    transform: translateY(4px) rotate(-45deg);
-  }
-}
-@keyframes bottom {
-  0% {
-    transform: translateY(0) rotate(0);
-  }
-  50% {
-    transform: translateY(-4px) rotate(0);
-  }
-  100% {
-    transform: translateY(-4px) rotate(45deg);
-  }
-}
-
-/*****************
 MENU DRAWER
 /****************/
 #menu-drawer {
   position: fixed;
-  top: var(--h-h);
-  height: calc(100vh - var(--h-h));
+  /* top: var(--h-h); */
+  /* height: calc(100vh - var(--h-h)); */
+  top: 0;
+  height: 100vh;
   width: 100%;
-  background-color: white;
+  padding-top: var(--h-h);
+  background-color: var(--c-yellow);
   z-index: 999;
   display: none;
 

@@ -7,7 +7,7 @@
       HEADER
     {% endcomment %}
     <header class="cd_h">
-      <h2>BAG</h2>
+      <h2>cart</h2>
 
       <div class="cd_h_r">
         <div data-count="{{ cart.item_count }}" class="cd_h_count_">
@@ -41,6 +41,7 @@
                 <div class="info_t">
                   <h3 class="cd_item-title">
                     {{ item.product.title | link_to: item.url }}
+                    ({{ item.quantity }})
                   </h3>
                   {% if item.product.has_only_default_variant == false %}
                     <p class="cd_item-options">
@@ -59,8 +60,11 @@
                   </div>
                 </div>
                 <div class="info_b">
-                  {{ 'Remove' | link_to: item.url_to_remove }}
-                  <p>{{ item.final_line_price | money }}</p>
+                  <p>
+                    {{ item.final_line_price | money_without_currency | remove: '.00' }}
+                    {{ shop.currency }}
+                  </p>
+                  {{ 'remove' | link_to: item.url_to_remove }}
                 </div>
               </div>
             </li>
@@ -74,17 +78,23 @@
             {% if cart.total_discounts > 0 %}
               <div class="cd_f_discount">
                 <h3>Discount</h3>
-                <span>{{ cart.total_discounts | money }}</span>
+                <span>
+                  {{- cart.total_discounts | money_without_currency | remove: '.00' }}
+                  {{ shop.currency }}
+                </span>
               </div>
             {% endif %}
             <div class="cd_f_subtotal">
               <h3>Subtotal</h3>
-              <span>{{ cart.total_price | money }}</span>
+              <span>
+                {{- cart.total_price | money_without_currency | remove: '.00' }}
+                {{ shop.currency }}
+              </span>
             </div>
           </div>
           <div class="cd_f-b">
-            <p>Shipping & Taxes are calculated at checkout</p>
-            <button type="submit" name="checkout">CHECKOUT</button>
+            <p>shipping fees are calculated at checkout</p>
+            <button type="submit" name="checkout">checkout</button>
           </div>
         </footer>
       {% endif %}

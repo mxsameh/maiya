@@ -1,8 +1,9 @@
+const $header = document.querySelector("#h");
 const $nav_items = document.querySelectorAll(".h_l .h_n-item");
-const $menu_btn = document.querySelector("#menu-icon");
+const $menu_btn = document.querySelector("#menu-btn");
 const $menu_drawer = document.querySelector("#menu-drawer");
 const $drawer_item_with_dropdown = document.querySelectorAll(
-  "#menu-drawer .has-dd"
+  "#menu-drawer .has-dd",
 );
 
 // NAV DROPDOWN
@@ -29,6 +30,7 @@ $menu_btn.addEventListener("click", () => {
   $menu_btn.classList.toggle("open");
   // Open drawer
   $menu_drawer.classList.toggle("d-n");
+  $header.classList.toggle('menu-active')
   // Fixed body
   document.body.classList.toggle("s-s");
 });

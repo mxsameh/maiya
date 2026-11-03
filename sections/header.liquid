@@ -7,7 +7,6 @@
   <header id="h" class="h">
     <!-- Header Left -->
     <div class="h_l">
-      {% render 'menu-icon' %}
       <a href="/" class="h_logo">
         {{ 'i-logo.svg' | inline_asset_content }}
       </a>
@@ -30,6 +29,11 @@
       </div>
     {% endcomment %}
 
+    <div class="h_r-m m-o">
+      <button id="menu-btn">
+        menu (<span id="cart-count" class="h_cb_count">{{- cart.item_count -}}</span>)
+      </button>
+    </div>
     <!-- Header Right -->
     <div class="h_r">
       <nav class="h_n">
