@@ -5,6 +5,9 @@ body {
   padding-block: 160rem 80rem;
   padding-inline: var(--p-i);
   color: var(--c-blue);
+  @media (width < 770px) {
+    padding-top: 120rem;
+  }
 }
 
 .s-intro {
@@ -14,7 +17,8 @@ body {
   position: relative;
   align-items: flex-start;
   @media (width < 770px) {
-    gap: 50rem;
+    gap: 40rem;
+    flex-direction: column;
   }
 
   h1 {
@@ -41,11 +45,19 @@ body {
       width: 150rem;
     }
   }
+  .img1 {
+    @media (width < 770px) {
+      transform: rotate(-15deg);
+      margin-left: 10rem;
+    }
+  }
   .img2 {
     margin-top: 80rem;
     transform: rotate(8deg);
     @media (width < 770px) {
-      margin-top: 60rem;
+      margin-top: 0;
+      margin-right: 20rem;
+      align-self: flex-end;
       transform: rotate(15deg);
     }
   }

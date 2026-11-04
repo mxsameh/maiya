@@ -1,6 +1,7 @@
 const $header = document.querySelector("#h");
 const $nav_items = document.querySelectorAll(".h_l .h_n-item");
 const $menu_btn = document.querySelector("#menu-btn");
+const $close_btn = document.querySelectorAll("#menu-btn")[1];
 const $menu_drawer = document.querySelector("#menu-drawer");
 const $drawer_item_with_dropdown = document.querySelectorAll(
   "#menu-drawer .has-dd",
@@ -25,14 +26,22 @@ $nav_items.forEach(($item) => {
   });
 });
 
-// MENU DRAWER BTN
+// MENU OPEN BTN
 $menu_btn.addEventListener("click", () => {
-  $menu_btn.classList.toggle("open");
+  $menu_btn.classList.add("d-n");
+  $close_btn.classList.remove("d-n");
   // Open drawer
-  $menu_drawer.classList.toggle("d-n");
-  $header.classList.toggle('menu-active')
+  $menu_drawer.classList.remove("d-n");
   // Fixed body
-  document.body.classList.toggle("s-s");
+  document.body.classList.add("s-s");
+});
+
+$close_btn.addEventListener("click", () => {
+  $menu_btn.classList.remove("d-n");
+  $close_btn.classList.add("d-n");
+  $menu_drawer.classList.add("d-n");
+  // Fixed body
+  document.body.classList.remove("s-s");
 });
 
 // MENU DRAWER DROPDOWN

@@ -2,7 +2,7 @@ body {
   background-color: var(--c-baby-blue);
 }
 .p {
-  padding-top: 160rem;
+  padding-top: 200rem;
   padding-bottom: 120rem;
   color: var(--c-blue);
   @media (width < 1000px) {
