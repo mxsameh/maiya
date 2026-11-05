@@ -1,4 +1,7 @@
-.p{
+body {
+  background-color: var(--c-yellow);
+}
+.p {
   padding-top: 120rem;
   padding-bottom: 160rem;
   padding-inline: 40rem;
