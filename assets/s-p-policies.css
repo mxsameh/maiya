@@ -11,6 +11,10 @@ body {
 .policy {
   display: flex;
   justify-content: space-between;
+
+  &:last-child{
+    MARGINJK
+  }
 }
 .policy h2 {
   font-size: 40rem;
