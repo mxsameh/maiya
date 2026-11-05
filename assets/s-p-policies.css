@@ -10,7 +10,6 @@ body {
 
 section{
     display: flex;
-    justify-content: spac˜
-    ;
-
+    justify-content: space-between;
 }
+
