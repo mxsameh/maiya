@@ -12,17 +12,19 @@ body {
   display: flex;
   justify-content: space-between;
 }
-.policy h2{
-    font-size: 80rem;
-    font-family: "i";
-    font-weight: normal;
+.policy h2 {
+  font-size: 40rem;
+  font-family: "i";
+  font-weight: normal;
 }
-.policy .r{
-    width: 800rem;
-}
-
-.policy p{
-
+.policy .r {
+  width: 800rem;
 }
 
-
+.policy p {
+  margin-top: 24rem;
+  font-family: "b";
+  font-size: 16rem;
+  line-height: 1.4;
+  text-align: justify;
+}
