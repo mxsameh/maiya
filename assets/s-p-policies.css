@@ -8,8 +8,9 @@ body {
   color: var(--c-blue);
 }
 
-section{
-    display: flex;
-    justify-content: space-between;
+.policy {
+  display: flex;
+  justify-content: space-between;
 }
+
 
