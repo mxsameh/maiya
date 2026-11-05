@@ -12,8 +12,8 @@ body {
   display: flex;
   justify-content: space-between;
 
-  &:last-child{
-    MARGINJK
+  &:last-child {
+    margin-top: 80rem;
   }
 }
 .policy h2 {
