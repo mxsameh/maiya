@@ -12,5 +12,14 @@ body {
   display: flex;
   justify-content: space-between;
 }
+.policy h2{
+    font-size: 80rem;
+    font-family: "i";
+    font-weight: normal;
+}
+
+.policy p{
+
+}
 
 
