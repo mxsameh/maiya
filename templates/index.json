@@ -92,10 +92,10 @@
         "item_Mn9BM8": {
           "type": "item",
           "settings": {
-            "image": "shopify://shop_images/Frame_50_fb4d92de-aa4d-4f0b-9ed4-b1469984fbae.png",
-            "x": 50,
-            "y": 110,
-            "width": 520,
+            "image": "shopify://shop_images/Frame_50.png",
+            "x": 100,
+            "y": 130,
+            "width": 540,
             "z_index": 310,
             "draggable": true
           }
