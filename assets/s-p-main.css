@@ -1,9 +1,16 @@
 body {
   background: var(--c-blue);
 }
+
 .p {
   padding-bottom: 160rem;
+  @media (width < 770px) {
+    padding-bottom: 120rem;
+    width: 100%;
+    overflow: hidden;
+  }
 }
+
 .s-playground {
   display: none;
   height: 100vh;
@@ -32,6 +39,10 @@ body {
     font-size: 90rem;
     font-family: "i";
     font-weight: normal;
+    @media (width < 770px) {
+      margin-top: 80rem;
+      font-size: 40rem;
+    }
   }
   span {
     display: block;

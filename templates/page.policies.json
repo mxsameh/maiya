@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "p-policies",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

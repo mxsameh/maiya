@@ -4,34 +4,58 @@ body {
 .p {
   padding-top: 120rem;
   padding-bottom: 160rem;
-  padding-inline: 40rem;
+  padding-inline: var(--p-i);
   color: var(--c-blue);
+  @media (width < 770px) {
+    padding-top: 100rem;
+    padding-bottom: 80rem;
+  }
 }
 
 .s-about {
   display: flex;
   justify-content: space-between;
 
+  @media (width < 770px) {
+    flex-direction: column;
+  }
+
   h1 {
     font-size: 80rem;
     font-family: "i";
     font-weight: normal;
+    @media (width < 770px) {
+      font-size: 48rem;
+      text-align: center;
+    }
   }
   .l {
     padding-top: 110rem;
+
+    @media (width < 770px) {
+      padding-top: 0;
+    }
   }
   .r {
     width: 800rem;
     padding-top: 32rem;
     display: flex;
     flex-direction: column;
-    /* gap: 40rem; */
+    @media (width < 770px) {
+      width: unset;
+      padding-top: 0;
+    }
   }
   .r div {
     font-family: "i";
     font-size: 40rem;
     align-self: flex-end;
     /* justify-self: flex-end; */
+
+    @media (width < 770px) {
+      align-self: center;
+      font-size: 24rem;
+    }
   }
   h3 {
     margin-top: 48rem;
@@ -39,6 +63,11 @@ body {
     font-size: 40rem;
     text-transform: lowercase;
     font-weight: normal;
+
+    @media (width < 770px) {
+      margin-top: 80rem;
+      font-size: 30rem;
+    }
   }
   p {
     margin-top: 24rem;
@@ -46,5 +75,8 @@ body {
     font-size: 16rem;
     line-height: 1.4;
     text-align: justify;
+    @media (width < 770px) {
+      font-size: 14rem;
+    }
   }
 }
