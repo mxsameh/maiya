@@ -52,6 +52,10 @@
     height: 900rem;
     overflow: hidden;
     position: relative;
+    @media (width < 770px) {
+      width: unset;
+      height: 600rem;
+    }
   }
   .pa .logo {
     width: 100%;
@@ -117,7 +121,6 @@
 
       var frame = root.querySelector('[data-pa-frame]');
       var stage = root.querySelector('[data-pa-stage]');
-      // var designW = parseFloat(root.dataset.stageW) || 1024;
       var designW = parseFloat(root.dataset.stageW) || 1440;
       var scale = 1;
 
@@ -199,10 +202,10 @@
       "type": "number",
       "id": "stage_width",
       "label": "Design width (px)",
-      "default": 1024,
+      "default": 1440,
       "info": "Positions below are in this coordinate space. The whole canvas scales to fit the screen."
     },
-    { "type": "number", "id": "stage_height", "label": "Design height (px)", "default": 601 }
+    { "type": "number", "id": "stage_height", "label": "Design height (px)", "default": 900 }
   ],
   "blocks": [
     {

@@ -34,6 +34,8 @@ body {
     @media (width < 770px) {
       font-size: 50rem;
       width: 100%;
+      position: static;
+      transform: unset;
     }
   }
   figure {
@@ -86,6 +88,7 @@ body {
   grid-template-columns: repeat(3, 1fr);
   gap: 24rem;
   @media (width < 770px) {
+    margin-top: 80rem;
     grid-template-columns: 100%;
     gap: 40rem;
   }
