@@ -13,10 +13,22 @@ body {
 
 .s-intro {
   padding-top: 160rem;
+  @media (width < 770px) {
+    padding-top: 100rem;
+  }
   .gallery {
     margin-inline: auto;
     width: 1000rem;
     display: flex;
+    @media (width < 770px) {
+      width: unset;
+      flex-wrap: wrap;
+    }
+  }
+  figure {
+    @media (width < 770px) {
+      flex-basis: 50%;
+    }
   }
   h2 {
     margin-top: 80rem;

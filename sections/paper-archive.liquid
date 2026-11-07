@@ -6,7 +6,7 @@
     <div
       class="pa__stage"
       data-pa-stage
-      style="width: {{ section.settings.stage_width }}px; height: {{ section.settings.stage_height }}px;"
+      {% comment %} style="width: {{ section.settings.stage_width }}px; height: {{ section.settings.stage_height }}px;" {% endcomment %}
     >
       {%- for block in section.blocks -%}
         {%- assign s = block.settings -%}
@@ -15,12 +15,12 @@
             class="pa__item{% if s.draggable %} is-draggable{% endif %}"
             data-pa-item
             style="
-              --x: {{ s.x }}px;
-              --y: {{ s.y }}px;
-              --w: {{ s.width }}px;
-              --mx: {{ s.x_mobile | default: s.x }}px;
-              --my: {{ s.y_mobile | default: s.y }}px;
-              --mw: {{ s.width_mobile | default: s.width }}px;
+              --x: {{ s.x }}rem;
+              --y: {{ s.y }}rem;
+              --w: {{ s.width }}rem;
+              --mx: {{ s.x_mobile | default: s.x }}rem;
+              --my: {{ s.y_mobile | default: s.y }}rem;
+              --mw: {{ s.width_mobile | default: s.width }}rem;
               z-index: {{ s.z_index }};
             "
             {{ block.shopify_attributes }}
@@ -49,11 +49,13 @@
 
 {% stylesheet %}
   .pa {
-    width: 1440rem;
-    height: 900rem;
     overflow: hidden;
     position: relative;
+    width: 1440rem;
+    height: 900rem;
     @media (width < 770px) {
+      margin-top: 80rem;
+      width: 400rem;
       height: 600rem;
     }
   }
@@ -73,7 +75,7 @@
     top: 0;
     left: 0;
     transform-origin: 0 0;
-    transform: scale(var(--pa-scale, 1));
+    /* transform: scale(var(--pa-scale, 1)); */
   }
 
   .pa__item {
@@ -140,7 +142,7 @@
         scale = frame.clientWidth / designW;
         stage.style.setProperty('--pa-scale', scale);
       }
-      resize();
+      // resize();
 
       var ro = new ResizeObserver(resize);
       ro.observe(frame);
@@ -158,8 +160,12 @@
           active = true;
           startX = e.clientX;
           startY = e.clientY;
-          originX = parseFloat(el.style.left) || 0;
-          originY = parseFloat(el.style.top) || 0;
+          // originX = parseFloat(el.style.left) || 0;
+          // originY = parseFloat(el.style.top) || 0;
+          originX = el.getBoundingClientRect().left || 0;
+          originY = el.getBoundingClientRect().top || 0;
+          console.log(originX, originY);
+
           el.setPointerCapture(e.pointerId);
           el.classList.add('is-dragging');
           el.style.zIndex = ++zCounter;
@@ -167,8 +173,8 @@
 
         el.addEventListener('pointermove', function (e) {
           if (!active) return;
-          el.style.left = originX + (e.clientX - startX) / scale + 'px';
-          el.style.top = originY + (e.clientY - startY) / scale + 'px';
+          el.style.left = originX + (e.clientX - startX) + 'rem';
+          el.style.top = originY + (e.clientY - startY) + 'rem';
         });
 
         function end() {
