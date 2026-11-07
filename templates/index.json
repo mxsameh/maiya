@@ -161,6 +161,7 @@
     "main": {
       "type": "p-main",
       "settings": {
+        "playground_img": "shopify://shop_images/WhatsApp_Image_2026-11-05_at_02.04.45_1.png",
         "img1": "shopify://shop_images/Frame_44.webp",
         "img2": "shopify://shop_images/Frame_36.webp",
         "img3": "shopify://shop_images/Frame_35.webp",
