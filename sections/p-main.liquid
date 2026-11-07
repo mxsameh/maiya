@@ -1,6 +1,11 @@
 {{ 's-p-main.css' | asset_url | stylesheet_tag }}
 
 <div class="p">
+  <section class="s-playground">
+    <figure>
+      {{ section.settings.playground_img | image_url: width: 800 | image_tag }}
+    </figure>
+  </section>
   <section
     class="s-intro"
   >
@@ -14,6 +19,9 @@
       <figure>
         {{ section.settings.img3 | image_url: width: 800 | image_tag }}
       </figure>
+      <figure class="m-o">
+        {{ section.settings.img4 | image_url: width: 800 | image_tag }}
+      </figure>
     </div>
     <h2>not strictly activewear <br /> not quite everyday wear <span> something in between </span></h2>
   </section>
@@ -23,6 +31,11 @@
 {
   "name": "main",
   "settings": [
+    {
+      "id": "playground_img",
+      "label": "Playground Image",
+      "type": "image_picker"
+    },
     {
       "id": "img1",
       "label": "Image 1",
@@ -42,7 +55,7 @@
       "id": "img4",
       "label": "Image 4",
       "type": "image_picker"
-    },
+    }
   ]
 }
 {% endschema %}
