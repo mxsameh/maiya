@@ -6,8 +6,6 @@ body {
   padding-bottom: 160rem;
   @media (width < 770px) {
     padding-bottom: 120rem;
-    width: 100%;
-    overflow: hidden;
   }
 }
 

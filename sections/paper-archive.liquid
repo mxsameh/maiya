@@ -205,7 +205,14 @@
       "default": 1440,
       "info": "Positions below are in this coordinate space. The whole canvas scales to fit the screen."
     },
-    { "type": "number", "id": "stage_height", "label": "Design height (px)", "default": 900 }
+    {
+      "id": "stage_width_mobile",
+      "label": "Mobile design width",
+      "type": "number",
+      "default": 400
+    },
+    { "type": "number", "id": "stage_height", "label": "Design height (px)", "default": 900 },
+    { "type": "number", "id": "stage_height_mobile", "label": "Mobile Design height (px)", "default": 600 }
   ],
   "blocks": [
     {
@@ -216,6 +223,9 @@
         { "type": "number", "id": "x", "label": "X", "default": 100 },
         { "type": "number", "id": "y", "label": "Y", "default": 100 },
         { "type": "number", "id": "width", "label": "Width", "default": 200 },
+        { "type": "number", "id": "x_mobile", "label": "X Mobile", "default": 100 },
+        { "type": "number", "id": "y_mobile", "label": "Y Mobile", "default": 100 },
+        { "type": "number", "id": "width_mobile", "label": "Width Mobile", "default": 200 },
         {
           "type": "number",
           "id": "z_index",
