@@ -125,8 +125,8 @@
       ],
       "name": "Paper Archive",
       "settings": {
-        "stage_width": 1024,
-        "stage_height": 601
+        "stage_width": 1440,
+        "stage_height": 900
       }
     },
     "main": {
