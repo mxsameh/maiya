@@ -222,6 +222,7 @@
         });
 
         el.addEventListener('pointermove', function (e) {
+          if (!desktopMq.matches) return; // no dragging on mobile
           if (!active) return;
           var x = originX + (e.clientX - startX) / rem;
           var y = originY + (e.clientY - startY) / rem;
