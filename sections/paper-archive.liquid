@@ -123,7 +123,7 @@
 {% javascript %}
   (function () {
     var zCounter = 1000;
-
+    /*
     function init() {
       const root = document.querySelector('[data-paper-archive]');
       if (!root || root.dataset.paReady === 'true') return;
@@ -175,6 +175,60 @@
           if (!active) return;
           el.style.left = originX + (e.clientX - startX) + 'rem';
           el.style.top = originY + (e.clientY - startY) + 'rem';
+        });
+
+        function end() {
+          active = false;
+          el.classList.remove('is-dragging');
+        }
+        el.addEventListener('pointerup', end);
+        el.addEventListener('pointercancel', end);
+      });
+    }
+
+*/
+    function init() {
+      const root = document.querySelector('[data-paper-archive]');
+      if (!root || root.dataset.paReady === 'true') return;
+      root.dataset.paReady = 'true';
+
+      var desktopMq = window.matchMedia('(width > 770px)');
+
+      // same formula as the html font-size in your CSS
+      function remPx() {
+        return window.innerWidth / (desktopMq.matches ? 1440 : 400);
+      }
+
+      root.querySelectorAll('[data-pa-item].is-draggable').forEach(function (el) {
+        var startX,
+          startY,
+          originX,
+          originY,
+          rem,
+          active = false;
+
+        el.addEventListener('pointerdown', function (e) {
+          if (e.pointerType === 'mouse' && e.button !== 0) return;
+          active = true;
+          rem = remPx();
+          startX = e.clientX;
+          startY = e.clientY;
+          // position inside the stage in rem (ignores hover scale/rotate)
+          originX = el.offsetLeft / rem;
+          originY = el.offsetTop / rem;
+          el.setPointerCapture(e.pointerId);
+          el.classList.add('is-dragging');
+          el.style.zIndex = ++zCounter;
+        });
+
+        el.addEventListener('pointermove', function (e) {
+          if (!active) return;
+          var x = originX + (e.clientX - startX) / rem;
+          var y = originY + (e.clientY - startY) / rem;
+          // write to the variables of the current breakpoint only
+          var isMobile = !desktopMq.matches;
+          el.style.setProperty(isMobile ? '--mx' : '--x', x + 'rem');
+          el.style.setProperty(isMobile ? '--my' : '--y', y + 'rem');
         });
 
         function end() {

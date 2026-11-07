@@ -30,6 +30,7 @@ $nav_items.forEach(($item) => {
 $menu_btn.addEventListener("click", () => {
   $menu_btn.classList.add("d-n");
   $close_btn.classList.remove("d-n");
+  $header.classList.add("active");
   // Open drawer
   $menu_drawer.classList.remove("d-n");
   // Fixed body
@@ -39,6 +40,8 @@ $menu_btn.addEventListener("click", () => {
 $close_btn.addEventListener("click", () => {
   $menu_btn.classList.remove("d-n");
   $close_btn.classList.add("d-n");
+  $header.classList.remove("active");
+
   $menu_drawer.classList.add("d-n");
   // Fixed body
   document.body.classList.remove("s-s");

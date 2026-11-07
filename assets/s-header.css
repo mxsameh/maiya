@@ -4,6 +4,9 @@
 .home .h {
   --f-c: var(--c-yellow);
 }
+.home .h.active {
+  --f-c: var(--c-blue);
+}
 .h {
   --f-c: var(--c-blue);
   height: var(--h-h);
@@ -13,7 +16,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9999;
+  z-index: 99999;
   display: flex;
   align-items: center;
   gap: 24px;
