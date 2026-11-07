@@ -14,12 +14,13 @@
           <div
             class="pa__item{% if s.draggable %} is-draggable{% endif %}"
             data-pa-item
-            data-x="{{ s.x }}"
-            data-y="{{ s.y }}"
             style="
-              left: {{ s.x }}px;
-              top: {{ s.y }}px;
-              width: {{ s.width }}px;
+              --x: {{ s.x }}px;
+              --y: {{ s.y }}px;
+              --w: {{ s.width }}px;
+              --mx: {{ s.x_mobile | default: s.x }}px;
+              --my: {{ s.y_mobile | default: s.y }}px;
+              --mw: {{ s.width_mobile | default: s.width }}px;
               z-index: {{ s.z_index }};
             "
             {{ block.shopify_attributes }}
@@ -53,7 +54,6 @@
     overflow: hidden;
     position: relative;
     @media (width < 770px) {
-      width: unset;
       height: 600rem;
     }
   }
@@ -78,10 +78,18 @@
 
   .pa__item {
     position: absolute;
+    left: var(--x);
+    top: var(--y);
+    width: var(--w);
     transform: rotate(var(--pa-rot, 0deg));
     transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), filter 0.2s;
     user-select: none;
     -webkit-user-select: none;
+    @media (width < 770px) {
+      left: var(--mx);
+      top: var(--my);
+      width: var(--mw);
+    }
   }
   .pa__item img {
     display: block;
@@ -122,9 +130,13 @@
       var frame = root.querySelector('[data-pa-frame]');
       var stage = root.querySelector('[data-pa-stage]');
       var designW = parseFloat(root.dataset.stageW) || 1440;
+      var mq = window.matchMedia('(width < 770px)');
       var scale = 1;
 
       function resize() {
+        var designW = mq.matches
+          ? parseFloat(root.dataset.stageWMobile) || 400
+          : parseFloat(root.dataset.stageW) || 1440;
         scale = frame.clientWidth / designW;
         stage.style.setProperty('--pa-scale', scale);
       }
